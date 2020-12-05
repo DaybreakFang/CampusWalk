@@ -1,0 +1,97 @@
+/* components/blog/blog.wxss */
+.tui-product-box {
+	margin-top: 20rpx;
+	padding: 0 25rpx;
+	box-sizing: border-box;
+}
+.tui-product-list {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	box-sizing: border-box;
+	/* padding-top: 20rpx; */
+}
+.tui-product-container {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	margin-right: 2%;
+}
+.tui-product-container:last-child {
+	margin-right: 0;
+}
+.tui-pro-item {
+	width: 100%;
+	margin-bottom: 4%;
+	background: #fff;
+	box-sizing: border-box;
+	border-radius: 12rpx;
+	overflow: hidden;
+}
+.tui-pro-img {
+	width: 100%;
+	display: block;
+}
+.tui-pro-content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	box-sizing: border-box;
+	padding: 20rpx;
+}
+.tui-pro-tit {
+	color: #2e2e2e;
+	font-size: 26rpx;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+.tui-pro-price {
+	padding-top: 18rpx;
+}
+/* .tui-sale-price {
+	font-size: 34rpx;
+	font-weight: 500;
+	color: #e41f19;
+} */
+.tui-header-thumb{
+	height: 40rpx;
+	width: 40rpx;
+	vertical-align: middle;
+	margin-right: 10rpx;
+	border-radius: 50%;
+}
+.tui-header-title{
+	display: inline-block;
+	font-size: 22rpx;
+	color: #656565;
+	vertical-align: middle;
+	max-width: 140rpx;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.tui-pro-pay {
+	padding-top: 10rpx;
+	font-size: 22rpx;
+	color: #656565;
+}

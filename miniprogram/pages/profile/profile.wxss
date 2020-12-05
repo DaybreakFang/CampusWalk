@@ -1,0 +1,119 @@
+/* pages/profile/profile.wxss */
+.box{
+	/* height: 300rpx; */
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300rpx;
+  width: 100%;
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); 
+}
+
+
+.user-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 2;
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	z-index: 2;
+}
+
+.avatar-img {
+	width: 160rpx;
+	height: 160rpx;
+	border-radius: 50%;
+	align-self: center;
+}
+
+.user-info {
+	display: flex;
+	flex-direction: row;
+	margin-top: 30rpx;
+	align-items: center;
+}
+
+.user-info-mobile {
+	margin-top: 30rpx;
+	position: relative;
+	font-size: 28rpx;
+	color: #fefefe;
+	line-height: 28rpx;
+	align-self: center;
+	padding: 0 50rpx;
+}
+
+.middle-container {
+	height: 138rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #ffffff;
+	margin-bottom: 16rpx;
+	box-shadow: 0 15rpx 10rpx -15rpx #efefef;
+	position: relative;
+	z-index: 2;
+}
+
+.middle-item {
+	flex: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.ticket-img {
+	width: 80rpx;
+	height: 80rpx;
+	margin-left: 65rpx;
+}
+
+.middle-tag {
+	font-size: 28rpx;
+	color: #333333;
+	line-height: 28rpx;
+	font-weight: bold;
+	padding-left: 22rpx;
+}
+
+.car-img {
+	width: 80rpx;
+	height: 80rpx;
+	margin-left: 97rpx;
+}
+
+
+
+
+
+.tui-item-box {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.tui-list-cell_name {
+	padding-left: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}

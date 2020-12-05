@@ -1,0 +1,29 @@
+<!--pages/message/message.wxml-->
+<navbar title="{{title}}">
+<tui-tabs tabs="{{navbar}}" currentTab="{{currentTab>1?0:currentTab}}" bindchange="change" itemWidth="50%"></tui-tabs>
+
+<view wx:if="{{(currentTab && official.length) || (!currentTab && message.length)}}">
+  <block wx:for="{{currentTab ? official:message}}" wx:key="index">  
+  <tui-list-cell lineLeft="false" bindclick="detail" >
+				<view class="tui-item-box">
+					<view class="tui-msg-box">
+						<image src="{{item.avatar}}" class="tui-msg-pic" mode="widthFix"></image>
+						<view class="tui-msg-item">
+							<view class="tui-msg-name">{{item.nickname}}</view>
+							<view class="tui-msg-content">{{item.desc}}</view>
+						</view>
+					</view>
+					<view class="tui-msg-right">
+						<view class="tui-msg-time">{{item.date}}</view>
+						<tui-badge type="danger" class="tui-badge">1</tui-badge>
+					</view>
+					</view>
+			</tui-list-cell>
+    </block>
+</view>
+
+<view wx:else>
+  <tui-no-data  imgUrl="/images/img_nodata.png">暂无数据</tui-no-data>
+</view>
+
+</navbar>

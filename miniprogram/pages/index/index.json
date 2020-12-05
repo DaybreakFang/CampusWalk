@@ -1,0 +1,8 @@
+{
+  "onReachBottomDistance": 50,
+  
+  "usingComponents": {
+     "card":"components/card/card",
+     "swiper-activity":"components/swiper-activity/swiper-activity"
+  }
+}

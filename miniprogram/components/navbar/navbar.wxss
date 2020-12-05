@@ -1,0 +1,47 @@
+.navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.title {
+  position: absolute;
+  bottom: 22px;
+  transform: translateY(50%);
+  font-size: 18px;
+  font-weight:bold;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.capsule {
+  position: absolute;
+  left: 16px;
+  bottom: 22px;
+  transform: translateY(50%);
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.capsule > image {
+  width: 20px;
+  height: 20px;
+}
+
+.capsule > image:nth-child(2) {
+  margin-left: 12px;
+}
+
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* overflow-y:scroll; */
+}

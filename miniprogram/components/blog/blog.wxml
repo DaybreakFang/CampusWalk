@@ -1,0 +1,45 @@
+<!--components/blog/blog.wxml-->
+<view class="tui-product-box">
+    <view class="tui-product-list">
+      <view class="tui-product-container">
+        <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <block wx:if="{{(index+1)%2!=0}}">
+            <block>
+              <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}"
+                data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
+                <image class="tui-pro-img" src="{{item.img}}" mode="widthFix">
+                </image>
+                <view class="tui-pro-content">
+                  <view class="tui-pro-tit">{{item.name}}</view>
+                  <view>
+                    <view style="float:left"><image class="tui-header-thumb" src="{{item.avatar}}" mode="widthFix"></image><text class="tui-header-title">{{item.nickname}}</text></view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like+"赞"}}</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+      <view class="tui-product-container">
+        <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <block wx:if="{{(index+1)%2==0}}">
+            <block>
+              <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}"
+                data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
+                <image class="tui-pro-img" src="{{item.img}}" mode="widthFix">
+                </image>
+                <view class="tui-pro-content">
+                  <view class="tui-pro-tit">{{item.name}}</view>
+                  <view>
+                    <view style="float:left"><image class="tui-header-thumb" src="{{item.avatar}}" mode="widthFix"></image><text class="tui-header-title">{{item.nickname}}</text></view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like+"赞"}}</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+    </view>
+  </view>

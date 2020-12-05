@@ -1,0 +1,17 @@
+/* pages/index/components/swiper-activity/swiper-activity.wxss */
+.container {
+  width: 344rpx;
+  height: 460rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #fff;
+}
+  
+  .swiper{
+    width: 100%;
+    height: 100%;
+    border-radius: 12rpx;
+  overflow: hidden;
+  transform: translateY(0);
+  background-color: #f8f8f8;
+  }

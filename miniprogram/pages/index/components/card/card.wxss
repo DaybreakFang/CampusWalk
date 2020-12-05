@@ -1,0 +1,36 @@
+/* pages/index/components/card/card.wxss */
+.intro-box{
+  width: 344rpx;
+  height: 220rpx;
+border-radius: 12rpx;
+  /* border: 4rpx #313c4d solid;
+  box-shadow: 6rpx 6rpx 4rpx #313c4d ; */
+  display: flex;
+  align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.box-layout{
+  display: flex;
+flex-direction: row;
+align-items: center;
+}
+.box-desc{
+  width: 150rpx;
+}
+.box-desc p{
+display: block;
+font-weight: bold;
+font-size: 36rpx;
+color: #313c4d;
+}
+.box-desc text{
+  font-size: 18rpx;
+  color: #5a5a5a;
+}
+.bg-warning{
+  background: #ffd553;
+}
+.bg-primary{
+  background:#00c9ff;
+}

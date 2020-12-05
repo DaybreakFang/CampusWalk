@@ -1,0 +1,30 @@
+<view
+  class="navbar"
+  style="height: {{navBarHeight}}px;background: {{background}};color: {{titleColor}};"
+>
+  <view class='title' style="  left:{{left}};right: {{right}};">{{title}}</view>
+
+  <view class='capsule'>
+  
+    <image
+      wx:if="{{back}}"
+      bindtap='back'
+      mode="aspectFit"
+      src='img/back.svg'
+    ></image>
+
+    <image
+      wx:if="{{home}}"
+      bindtap='home'
+      mode="aspectFit"
+      src='img/home.svg'
+    ></image>
+  </view>
+</view>
+
+<view
+  class="page"
+  style="top: {{navBarHeight}}px;"
+>
+  <slot></slot>
+</view>

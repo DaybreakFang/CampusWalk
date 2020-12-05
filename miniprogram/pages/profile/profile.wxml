@@ -1,0 +1,67 @@
+<!--pages/profile/profile.wxml-->
+<navbar title="{{title}}">
+  <view class="box">
+  <view hidden="{{isLogin}}" class="user-wrapper">
+      <navigator url="/pages/login/login" hover-class="opcity" hover-stay-time="150" class="user">
+        <image class="avatar-img" src="/images/avatar.png"></image>
+        <text class="user-info-mobile">请登录</text>
+      </navigator>
+    </view>
+    <view hidden="{{!isLogin}}" class="user">
+      <image class="avatar-img" src="/images/avatar.png"></image>
+      <view class="user-info-mobile">
+        <text>计算机信息与科学学院</text>
+      </view>
+    </view>
+</view>
+
+<view class="middle-container">
+    <view bindtap="tapEvent" data-index="1" class="middle-item" hover-class="opcity" hover-stay-time="150">
+      <image class="ticket-img" src="/images/avatar.png"></image>
+      <text class="middle-tag">动态</text>
+    </view>
+    <view bindtap="github" class="middle-item" hover-class="opcity" :hover-stay-time="150">
+      <image class="car-img" src="/images/avatar.png"></image>
+      <text class="middle-tag">成就</text>
+    </view>
+  </view>
+
+<tui-list-cell bindclick="detail" arrow="{{true}}">
+    <view class="tui-item-box">
+        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <view class="tui-list-cell_name">发布规范</view>
+      </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail" arrow="{{true}}">
+    <view class="tui-item-box">
+        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <view class="tui-list-cell_name">使用帮助</view>
+      </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail" arrow="{{true}}">
+    <view class="tui-item-box">
+        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <view class="tui-list-cell_name">关于我们</view>
+      </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail" arrow="{{true}}">
+    <view class="tui-item-box">
+        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <view class="tui-list-cell_name">意见反馈</view>
+      </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail" arrow="{{true}}">
+    <view class="tui-item-box">
+        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <view class="tui-list-cell_name">推荐给朋友</view>
+      </view>
+  </tui-list-cell>
+</navbar>
+
+
+
+
+ 
+
+
+

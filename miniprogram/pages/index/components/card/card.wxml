@@ -1,0 +1,9 @@
+<!--pages/index/components/card/card.wxml-->
+<view class="intro-box {{'bg-' + type}}">
+  <view class="box-layout">
+    <view class="box-desc">
+      <p>{{title}}</p>
+      <text>{{desc}}</text>
+    </view>
+  </view>
+</view>
