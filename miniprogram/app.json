@@ -1,13 +1,11 @@
 
 {
   "pages": [
+    "pages/walk/walk",
     "pages/index/index",
+    
     "pages/message/message",
     "pages/profile/profile"
-    
-    
-  
-
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,7 +13,8 @@
   },
   "usingComponents": {
     "navbar": "/components/navbar/navbar",
-    "icon": "/components/icon/icon",
+    "tui-icon": "/components/tui-icon/tui-icon",
+    "ali-icon": "/components/ali-icon/ali-icon",
     "tui-list-cell": "/components/tui-list-cell/tui-list-cell",
     "uloading": "/components/uloading/uloading",
     "blog": "/components/blog/blog",

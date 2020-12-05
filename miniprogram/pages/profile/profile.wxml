@@ -28,31 +28,31 @@
 
 <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">发布规范</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">使用帮助</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">关于我们</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">意见反馈</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></icon>
+        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">推荐给朋友</view>
       </view>
   </tui-list-cell>

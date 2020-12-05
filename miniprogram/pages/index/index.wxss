@@ -1,8 +1,6 @@
 /* miniprogram/pages/index/index.wxss */
 /* pages/welcome/welcome.wxss */
-page{
-  /* background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); */
-}
+
 
 .container{
 position: relative;

@@ -16,7 +16,7 @@
             <view style="flex:1">
               <card type="warning" title="扫一扫" desc="扫描校园地标附近的二维码了解更多" />
             </view>
-            <view style="flex:1;margin-top:3%">
+            <view style="flex:1;margin-top:3%" bindtap="authLocation">
               <card type="primary" title="逛一逛" desc="游览与你位置最近10个校园地标景点" />
             </view>
           </view>

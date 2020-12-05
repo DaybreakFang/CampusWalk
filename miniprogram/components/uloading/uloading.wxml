@@ -1,7 +1,7 @@
 <!--loading组件-->
 <view wx:if="{{show}}" class="mask" style="background-color:{{mask?'rgba(255, 255, 255)':'transparent'}}">
   <view class="loading">
-    <image src="./../../images/logo2.png" class="loading-icon animated zoomIn infinite " />
+    <image src="./../../images/logo.png" class="loading-icon animated zoomIn infinite " />
     <text class="loading-text">{{loadingText}}</text>
   </view>
 </view>

@@ -1,0 +1,4 @@
+<!--components/ali-icon/ali-icon.wxml-->
+<text class="iconfont {{name}}"
+	style="color: {{color || '#999'}};font-size: {{size + unit}};font-weight:{{bold ? 'bold' : 'normal'}};margin:{{margin}}"
+	bindtap="handleClick"></text>

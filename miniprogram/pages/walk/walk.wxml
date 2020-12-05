@@ -1,0 +1,155 @@
+<!-- 自定义导航栏 -->
+<navbar title="{{title}}" back>
+
+	<view class="container">
+		<view wx:if="{{isLocation}}" class="animete-box">
+			<view class="animete-boy animete-1 animated heartBeat">
+				<image src="../../images/circle/food.png"></image>
+			</view>
+			<view class="animete-girl animete-2 animated heartBeat">
+				<image src="../../images/circle/land.png"></image>
+			</view>
+			<view class="animete-girl animete-3 animated heartBeat">
+				<image src="../../images/circle/teach.png"></image>
+			</view>
+			<view class="animete-boy animete-4 animated heartBeat">
+				<image src="../../images/circle/land.png"></image>
+			</view>
+			<view class="animete-girl animete-5 animated heartBeat">
+				<image src="../../images/circle/food.png"></image>
+			</view>
+			<view class="dot">
+			</view>
+			<view class="pulse"></view>
+			<view class="pulse2"></view>
+		</view>
+		<view wx:else>
+			<view class="head">
+				<text>{{locationTitle}}</text>
+			</view>
+			<view class="intro">
+				<view class="intro-card">
+					<view class="header">
+						<view class="option">
+							<view class="wrap">
+								<block wx:for="{{optionList}}" wx:key="index">
+									<tui-tag shape="circle" plain="{{item.checked ? true:false }}" type="{{item.type}}"
+										data-index='{{item.id}}' bindclick="optionType">{{item.title}}</tui-tag>
+								</block>
+							</view>
+						</view>
+						<view class="audio-layout">
+							<view class="audio" bindtap="play">
+								<ali-icon name="icon-{{isPlay?'zanting':'bofang'}}" size="{{40}}" color="#fff"></ali-icon>
+							</view>
+						</view>
+					</view>
+
+					<view class="content">
+						<view class="loading" wx:if="{{loadingShow}}">
+							<uloading id="loading" />
+						</view>
+						<swiper wx:else autoplay="{{false}}" bindchange="swiperChange" class="swiper" current="{{currentImgIndex}}"
+							duration="{{500}}" indicatorDots="{{false}}" interval="{{5000}}" nextMargin="85rpx" previousMargin="85rpx"
+							skipHiddenItemLayout="true">
+							<swiper-item wx:for="{{locationList}}" wx:key="index">
+
+								<view class="swiper-item-con bg-{{item.locaType}} {{currentImgIndex==index?'swiper-active':''}}">
+									<view class="go">
+										<button>{{isPlay?'正在漫游...':'进  入'}}</button>
+									</view>
+									<view class="{{currentImgIndex==index?'card':'blank'}} ">
+										<view class="card-main">
+											<image class="change-img" mode="aspectFill" src="{{item.img}}"></image>
+											<!-- <view class="views"> -->
+											<!-- <text class="locationTitle">{{item.name}}</text> -->
+											<!-- <view >
+										<tui-icon name="eye" size="20" color="#fff"></tui-icon><span>1000人来过</span>
+									</view> -->
+											<!-- </view> -->
+										</view>
+										<view class="desc-show">
+											<text>{{item.desc}}</text>
+										</view>
+									</view>
+								</view>
+							</swiper-item>
+						</swiper>
+					</view>
+				</view>
+
+			</view>
+		</view>
+
+
+
+	</view>
+
+	<!-- 地图上方悬浮---活动通知-->
+	<!-- <view class="inform {{isEmerge}}" hidden="{{!isDetail}}" >
+			<view class="informBox">
+				<view class="informContent">
+					<view class="tui-rolling-news">
+						<image src="../../images/inform.svg"></image>
+						<swiper vertical="{{true}}" autoplay="{{true}}" circular="{{true}}" interval="3000" class="tui-swiper">
+							<swiper-item wx:for="{{TOPList}}" wx:for-item="hot" wx:key="index" class="tui-swiper-item">
+								<view class="tui-news-item"  bindtap="ToTop" data-id="{{hot._id}}">{{hot.content}}</view>
+							</swiper-item>
+						</swiper>
+						<view class="informGo">GO ></view> 
+					</view>
+					
+				</view>
+			</view>
+		</view> -->
+
+
+	<!-- 使用帮助 -->
+	<!-- <view class="help_icon">
+			<view class="current-location3 " bindtap="Tohelp">
+				<image src="../../images/help.svg" class="current-img"></image>
+			</view>
+		</view> -->
+	<!-- <map id="myMap" class="map" longitude="113.912441" latitude="30.935305" scale='{{scale}}' show-location  subkey="NWIBZ-QD4C4-YZJUA-D4BHO-U3KVK-SGFXR" include-points="{{AllPoints}}" markers="{{buildlData}}" enable-3D="{{true}}" bindtap="detail" bindmarkertap="markertap">
+		</map> -->
+
+
+</navbar>
+<!-- 地图 -->
+
+
+<!-- 地图左下悬浮---回到原点-->
+<!-- <view class="current-location1" bindtap="moveToLocation" style="bottom: {{isDetail?80:400}}rpx;">
+	<image src="../../images/fab/location.svg" class="current-img"></image>
+</view> -->
+
+<!-- 地图分类悬浮 -->
+<!-- <view class="cate" style="bottom: {{isDetail?70:400}}rpx;">
+	<view class="tab">
+		<image src="../../images/category/landscape.png" style="transform:{{landscape?'scale(0.8)':'scale(0.6)'}};" bindtap="type2"></image>
+		<image src="../../images/category/teach.png" style="transform:{{teach?'scale(0.8)':'scale(0.6)'}};" bindtap="type1"></image>
+		<image src="../../images/category/life.png" style="transform:{{life?'scale(0.8)':'scale(0.6)'}};" bindtap="type3"></image>
+	</view>
+</view> -->
+
+
+<!-- 地图右下悬浮 -->
+<!-- <view class="current-location2" bindtap="onClick" style="bottom: {{isDetail?80:400}}rpx;">
+	<image src="../../images/fab/my.svg" class="current-img"></image>
+</view> -->
+<!-- hidden="{{isDetail}}" -->
+<!-- 地标介绍 -->
+
+<!-- <view class="{{pop_animate}} pop"  bindtap="ToDetail">
+	<view class="pop_left">
+		<text style="font-weight:bold;font-size:40rpx">{{landTitle}}</text>
+		<text class="left_des">{{description}}</text>
+	</view>
+	<view class="pop_right">
+		<image src="{{landImg}}" class="right_img"></image>
+		<view class="right_btn">
+			<text>进 入</text>
+		</view>
+	</view>
+
+</view> -->
