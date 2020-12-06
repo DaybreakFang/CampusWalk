@@ -1,11 +1,16 @@
 
 {
   "pages": [
-    "pages/walk/walk",
+    "pages/add/add",
+    "pages/cropper/cropper",
+   
     "pages/index/index",
-    
+    "pages/attraction/attraction",
+    "pages/walk/walk",
     "pages/message/message",
     "pages/profile/profile"
+   
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,6 +18,7 @@
   },
   "usingComponents": {
     "navbar": "/components/navbar/navbar",
+    "tui-navigation-bar": "/components/tui-navigation-bar/tui-navigation-bar",
     "tui-icon": "/components/tui-icon/tui-icon",
     "ali-icon": "/components/ali-icon/ali-icon",
     "tui-list-cell": "/components/tui-list-cell/tui-list-cell",

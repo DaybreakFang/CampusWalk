@@ -1,0 +1,31 @@
+<!--pages/add/add.wxml-->
+<navbar title="发布动态" home back>
+  <view class="container">
+    <view  wx:if="{{isOpen}}" class="open">
+      <text class="title">编辑正文</text>
+      <text class="issue" bindtap="blurInput">完成</text>
+    </view>
+    <view wx:else class="header">
+      <text class="cancel">取消</text>
+      <text class="issue">发布</text>
+    </view>
+    <tui-list-cell padding="0" hover="{{false}}">
+      <view class="thorui-upload__box">
+        <tui-upload value="{{value}}" dealWithValue="{{dealWithValue}}" serverUrl="{{serverUrl}}" bindcomplete="result" bindremove="remove" ></tui-upload>
+      </view>
+    </tui-list-cell>
+    <view class="location">
+      <tui-icon  name="gps" size="{{14}}" color="#ccc" ></tui-icon>
+      <text>计算机学院</text>
+    </view>
+    <view class="{{isOpen?'text-input':''}}">
+      <tui-list-cell hover="{{false}}">
+					<view class="thorui-input-item thorui-textarea">
+            <textarea class="thorui-input" placeholder-class="thorui-phcolor" bindtap="focusInput" bindinput="onInput" placeholder="{{isOpen?'把第一句作为标题，更有可能被推荐哦~':'说点什么吧～'}}" maxlength="500"></textarea>
+            <view class="thorui-counter">{{wordsNum}}</view>
+					</view>
+				</tui-list-cell>
+    </view>
+ 
+  </view>
+</navbar>

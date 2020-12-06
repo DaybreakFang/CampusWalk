@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-    title: "漫游校园",
+    opacity: 0,
+    scrollTop: 0.5,
     swiperArr: [
       "/images/banner1.png",
       "/images/banner2.png"
@@ -131,6 +131,21 @@ Page({
       }
     })
   },
+  initNavigation(e) {
+    this.setData({
+      opacity:e.detail.opacity
+    })
+  },
+  opcityChange(e) {
+    this.setData({
+      opacity:e.detail.opacity
+    })
+  },
+	onPageScroll(e) {
+    this.setData({
+      scrollTop:e.scrollTop
+    })
+	},
   /**
    * 生命周期函数--监听页面加载
    */

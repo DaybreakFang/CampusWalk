@@ -4,19 +4,19 @@
 	<view class="container">
 		<view wx:if="{{isLocation}}" class="animete-box">
 			<view class="animete-boy animete-1 animated heartBeat">
-				<image src="../../images/circle/food.png"></image>
+				<image src="../../images/food.png"></image>
 			</view>
 			<view class="animete-girl animete-2 animated heartBeat">
-				<image src="../../images/circle/land.png"></image>
+				<image src="../../images/land.png"></image>
 			</view>
 			<view class="animete-girl animete-3 animated heartBeat">
-				<image src="../../images/circle/teach.png"></image>
+				<image src="../../images/teach.png"></image>
 			</view>
 			<view class="animete-boy animete-4 animated heartBeat">
-				<image src="../../images/circle/land.png"></image>
+				<image src="../../images/land.png"></image>
 			</view>
 			<view class="animete-girl animete-5 animated heartBeat">
-				<image src="../../images/circle/food.png"></image>
+				<image src="../../images/food.png"></image>
 			</view>
 			<view class="dot">
 			</view>
@@ -60,7 +60,7 @@
 									</view>
 									<view class="{{currentImgIndex==index?'card':'blank'}} ">
 										<view class="card-main">
-											<image class="change-img" mode="aspectFill" src="{{item.img}}"></image>
+											<image class="change-img {{isPlay?'rotate':''}}" mode="aspectFill" src="{{item.img}}"></image>
 											<!-- <view class="views"> -->
 											<!-- <text class="locationTitle">{{item.name}}</text> -->
 											<!-- <view >

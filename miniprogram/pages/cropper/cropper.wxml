@@ -1,0 +1,16 @@
+<view class="container">
+  <tui-navigation-bar transparent bindinit="initNavigation" color="#333">
+    <view class="tui-header-icon" style="margin-top:{{top}}px">
+      <tui-icon name="arrowleft" color="{{'#fff'}}" bindclick="back"></tui-icon>
+    </view>
+  </tui-navigation-bar>
+
+  <tui-picture-cropper custom edgeColor="{{'#00c9ff'}}" startCutting="{{startCutting}}" 
+  imageUrl="{{imageUrl}}" bindcropper="cropper">
+  </tui-picture-cropper>
+  <view class="operate-bar">
+    <view class="item-box">
+      <text bindtap="btnCropper">确认裁剪</text>
+    </view>
+  </view>
+</view>

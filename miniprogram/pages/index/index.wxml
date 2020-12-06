@@ -1,7 +1,6 @@
-<!--miniprogram/pages/index/index.wxml-->
-<navbar title="{{title}}">
-
-  <view class="container"  >
+  <view class="container">
+    <tui-navigation-bar splitLine bindinit="initNavigation" dropDownHide bindchange="opcityChange" scrollRatio="0.7" scrollTop="{{scrollTop}}" title="漫游校园" backgroundColor="#f6f6f6" color="#333" >
+		</tui-navigation-bar>
     <view class="intro-img">
       <image src="../../images/intro.png"></image>
     </view>
@@ -23,12 +22,9 @@
         </view>
       </view>
       <blog list="{{blogList}}" />
-          <!--加载loadding-->
-    <tui-loadmore wx:if="{{loadding}}" index="3" type="primary"></tui-loadmore>
-<tui-nomore wx:if="{{!pullUpOn}}"></tui-nomore>
-    <!--加载loadding-->
+      <!--加载loadding-->
+      <tui-loadmore wx:if="{{loadding}}" index="3" type="primary"></tui-loadmore>
+      <tui-nomore wx:if="{{!pullUpOn}}"></tui-nomore>
+      <!--加载loadding-->
     </view>
-
-
   </view>
-</navbar>

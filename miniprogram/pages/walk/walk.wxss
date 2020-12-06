@@ -204,6 +204,19 @@ padding-bottom: env(safe-area-inset-bottom);
 .views span {
   margin-left: 10rpx;
 }
+
+.rotate {
+	animation: rotate2d 6s linear infinite;
+}
+
+@keyframes rotate2d {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
 .animete-box{
   width: 375px;
   height: 375px;
@@ -213,7 +226,11 @@ padding-bottom: env(safe-area-inset-bottom);
   transform: translate(-50%, -50%);
   border-radius: 50%;
 }
-
+.animete-box image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
 /*css3波纹*/
 .wrap__uc-waves{overflow:hidden;height:1rem;width:100%;position:absolute;bottom:0;}
 .wrap__uc-waves .wave{width:15rem; transform-origin:center bottom; position:absolute;left:0;bottom:0;}
