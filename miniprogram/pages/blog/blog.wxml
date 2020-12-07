@@ -1,0 +1,5 @@
+<navbar title="{{title}}" back>
+<view class="container">
+    <blog list="{{blogList}}" />
+</view>
+</navbar>

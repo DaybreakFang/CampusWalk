@@ -56,7 +56,7 @@
 
 								<view class="swiper-item-con bg-{{item.locaType}} {{currentImgIndex==index?'swiper-active':''}}">
 									<view class="go">
-										<button>{{isPlay?'正在漫游...':'进  入'}}</button>
+										<button bindtap="ToAttraction">{{isPlay?'正在漫游...':'进  入'}}</button>
 									</view>
 									<view class="{{currentImgIndex==index?'card':'blank'}} ">
 										<view class="card-main">

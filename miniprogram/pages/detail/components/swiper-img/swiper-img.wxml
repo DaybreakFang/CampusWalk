@@ -1,0 +1,13 @@
+<view class="tui-skeleton-rect">
+  <swiper  indicator-dots="{{true}}" autoplay='{{true}}' interval="{{5000}}" duration="{{500}}"
+    circular="{{true}}"  style="height:1050rpx;" >
+    <block wx:for="{{imgArr}}" wx:key="index">
+      <swiper-item style="">
+        <image src="{{item}}" 
+          style="height:1050rpx;width:750rpx;"  data-src='{{item}}'
+          data-index='{{index}}'>
+        </image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

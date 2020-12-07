@@ -1,14 +1,11 @@
-// pages/attraction/attraction.js
-// const navBarHeight = wx.getSystemInfoSync().statusBarHeight
+// pages/blog/blog.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    top: 0, //标题图标距离顶部距离
-    opacity: 0,
-    scrollTop: 0.5,
+    title:"",
     blogList: [{
       img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg",
       name: '欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜 30ml（欧莱雅彩妆 BB霜 粉BB 遮瑕疵 隔离）',
@@ -90,35 +87,16 @@ Page({
     }
   ],
   },
-  ToAdd(){
-wx.navigateTo({
-  url: '../add/add',
-})
-  },
-  initNavigation(e) {
-    this.setData({
-      opacity:e.detail.opacity,
-      top:e.detail.top
-    })
-  },
-  opcityChange(e) {
-    this.setData({
-      opacity:e.detail.opacity
-    })
-  },
-  back() {
-    wx.navigateBack();
-  },
-	onPageScroll(e) {
-    this.setData({
-      scrollTop:e.scrollTop
-    })
-	},
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let res = Number(options.type)
+  const title = res ? '我的发布' : '我的收藏'
+    this.setData({
+      title
+    })
   },
 
   /**

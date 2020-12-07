@@ -1,0 +1,8 @@
+/* pages/blog/blog.wxss */
+
+.container{
+  position: relative;
+  padding-top: 10rpx;
+padding-bottom: 120rpx;
+  width: 100%;
+}

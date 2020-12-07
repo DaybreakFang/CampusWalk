@@ -1,5 +1,5 @@
 <!--pages/add/add.wxml-->
-<navbar title="发布动态" home back>
+<navbar title="发布动态" back>
   <view class="container">
     <view  wx:if="{{isOpen}}" class="open">
       <text class="title">编辑正文</text>
@@ -15,7 +15,7 @@
       </view>
     </tui-list-cell>
     <view class="location">
-      <tui-icon  name="gps" size="{{14}}" color="#ccc" ></tui-icon>
+      <tui-icon  name="gps" size="{{15}}" color="#999" ></tui-icon>
       <text>计算机学院</text>
     </view>
     <view class="{{isOpen?'text-input':''}}">

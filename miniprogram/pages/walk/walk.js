@@ -122,7 +122,11 @@ Page({
     // })
 
   },
-
+  ToAttraction(){
+    wx.navigateTo({
+      url: '../attraction/attraction',
+    })
+  },
   // 切换 卡片
   swiperChange: function (e) {
     var a = e.detail.current;

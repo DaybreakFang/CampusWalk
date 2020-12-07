@@ -54,9 +54,13 @@ Page({
     ]
   },
   change(e) {
-    console.log('当前',e.detail.index)
     this.setData({
       currentTab: e.detail.index
+    })
+  },
+  detail(){
+    wx.navigateTo({
+      url: '../detail/detail',
     })
   },
   /**

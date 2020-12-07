@@ -1,16 +1,15 @@
 
 {
   "pages": [
+    "pages/index/index",
+    "pages/profile/profile",
+    "pages/blog/blog",
+    "pages/attraction/attraction", 
+    "pages/detail/detail",
     "pages/add/add",
     "pages/cropper/cropper",
-   
-    "pages/index/index",
-    "pages/attraction/attraction",
     "pages/walk/walk",
-    "pages/message/message",
-    "pages/profile/profile"
-   
-
+    "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +26,8 @@
     "tui-no-data":"/components/tui-no-data/tui-no-data",
     "tui-badge":"/components/tui-badge/tui-badge",
     "tui-loadmore":"/components/tui-loadmore/tui-loadmore",
-    "tui-nomore":"/components/tui-nomore/tui-nomore"
+    "tui-nomore":"/components/tui-nomore/tui-nomore",
+    "tui-skeleton":"/components/tui-skeleton/tui-skeleton"
   },
   "permission": {
     "scope.userLocation": {

@@ -1,3 +1,5 @@
+
+
 <view class="container">
   <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}" title="计算机科学技术学院" backgroundColor="#f6f6f6" color="#333">
 			<view class="tui-header-icon" style="margin-top:{{top}}px"><tui-icon name="arrowleft" color="{{opacity > 0.85 ? '#333' : '#fff'}}" bindclick="back"></tui-icon></view>
@@ -12,17 +14,20 @@
     <view class="add">
       <view class="add-btn">
         <tui-icon  name="send" size="{{20}}" color="#fff"></tui-icon>
-        <text>发表动态</text>
+        <text bindtap="ToAdd">发表动态</text>
       </view>
     </view>
   </view>
   <view class="switch">
-  <view>全部动态</view>
+  <view style="color:#333">全部动态</view>
   <view class="switch-right">
     <text style="color:#00c9ff">推荐</text>
     <text>最新</text>
   </view>
     
   </view>
-  <blog list="{{blogList}}" />
+
+    <blog list="{{blogList}}" />
+  
+ 
 </view>

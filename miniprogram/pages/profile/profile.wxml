@@ -17,42 +17,42 @@
 
 <view class="middle-container">
     <view bindtap="tapEvent" data-index="1" class="middle-item" hover-class="opcity" hover-stay-time="150">
-      <image class="ticket-img" src="/images/avatar.png"></image>
-      <text class="middle-tag">动态</text>
+      <view style="margin-left: 65rpx;"> <tui-icon  name="camera-fill" size="{{30}}" color="#f37b1d" ></tui-icon></view> 
+      <text class="middle-tag">我的发布</text>
     </view>
-    <view bindtap="github" class="middle-item" hover-class="opcity" :hover-stay-time="150">
-      <image class="car-img" src="/images/avatar.png"></image>
-      <text class="middle-tag">成就</text>
+    <view bindtap="tapEvent" data-index="0" class="middle-item" hover-class="opcity" :hover-stay-time="150">
+     <view style="margin-left: 65rpx;"> <tui-icon  name="star-fill" size="{{30}}" color="#fbbd08" ></tui-icon></view> 
+      <text class="middle-tag">我的收藏</text>
     </view>
   </view>
 
 <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
+        <tui-icon  name="card-fill" size="{{24}}" color="#a5673f" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">发布规范</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
+        <tui-icon  name="explain-fill" size="{{24}}" color="#e03997" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">使用帮助</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
+        <tui-icon  name="community-fill" size="{{24}}" color="#39b54a" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">关于我们</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
+        <tui-icon  name="mail-fill" size="{{24}}" color="#9c26b0" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">意见反馈</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="wealth-fill" size="{{24}}" color="#ff7900" bind:__l="__l"></tui-icon>
+        <tui-icon  name="friendadd-fill" size="{{24}}" color="#00c9ff" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">推荐给朋友</view>
       </view>
   </tui-list-cell>

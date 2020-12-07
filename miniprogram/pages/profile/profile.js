@@ -9,6 +9,17 @@ Page({
     isLogin: false
   },
 
+  tapEvent(e){
+    /**
+     * index = 1 前往 我的发布
+     * index = 0 前往 我的收藏
+     */
+    let index = e.currentTarget.dataset.index
+      wx.navigateTo({
+        url: '../blog/blog?type='+index,
+      })
+   
+  },
   /**
    * 生命周期函数--监听页面加载
    */
