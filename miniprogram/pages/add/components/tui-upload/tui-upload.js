@@ -56,7 +56,7 @@ Component({
     //可上传图片类型，默认为空，不限制  Array<String> [jpg,png,gif]
     imageFormat: {
       type: Array,
-      value:[]
+      value:["jpg","png"]
     },
     //单张图片大小限制 MB 
     size: {
@@ -176,12 +176,15 @@ Component({
 							}
 
            imageArr.push(path);
-          
             status.push("2")
           }
-          wx.navigateTo({
-            url: '../cropper/cropper?arr='+JSON.stringify(imageArr),
-          })
+          console.log('path:',imageArr.length)
+          if(imageArr.length!=0){
+            wx.navigateTo({
+              url: '../cropper/cropper?arr='+JSON.stringify(imageArr),
+            })
+          }
+         
         }
       })
     },

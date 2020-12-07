@@ -63,7 +63,7 @@ padding-bottom: env(safe-area-inset-bottom);
 }
 .location{
   background-color: #f8f8f8;
-  color: #ccc;
+  color: #999;
   padding:  6rpx 20rpx;
   font-size: 26rpx;
   display: inline-block;

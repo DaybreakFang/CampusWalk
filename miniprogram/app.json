@@ -1,18 +1,20 @@
 
 {
   "pages": [
+    "pages/add/add",
     "pages/index/index",
     "pages/profile/profile",
     "pages/blog/blog",
     "pages/attraction/attraction", 
     "pages/detail/detail",
-    "pages/add/add",
+   
     "pages/cropper/cropper",
     "pages/walk/walk",
     "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
   "usingComponents": {
