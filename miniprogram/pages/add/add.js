@@ -31,11 +31,11 @@ Page({
   },
   onInput(event) {
     let wordsNum = event.detail.value.length;
-    if (wordsNum >= MAX_WORDS_NUM) {
-      wordsNum = `最大字数为${MAX_WORDS_NUM}`
-    }
+  
+   let   words = `${wordsNum} / ${MAX_WORDS_NUM}`
+    
     this.setData({
-      wordsNum
+      wordsNum:words
     })
 
   },

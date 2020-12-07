@@ -16,20 +16,20 @@ padding-bottom: env(safe-area-inset-bottom);
   background-color: #fff;
 }
 .open text{
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   font-size: 30rpx;
-  padding: 0 20rpx;
+  padding: 0 30rpx;
   border-radius: 40rpx;
   text-align: center;
 }
 .title{
-  flex: 9;
+  flex: 17;
   font-size: 40rpx;
   color: #333;
 }
 .open .issue{
-  flex: 1;
+  flex: 2;
   background: #00c9ff;
   color: #fff;
 }
@@ -43,10 +43,10 @@ padding-bottom: env(safe-area-inset-bottom);
   background-color: #fff;
 }
 .header text{
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   font-size: 30rpx;
-  padding: 0 20rpx;
+  padding: 0 30rpx;
   border-radius: 40rpx;
 
 }
@@ -61,6 +61,11 @@ padding-bottom: env(safe-area-inset-bottom);
 .thorui-upload__box{
   padding: 20rpx;
 }
+.content-middle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .location{
   background-color: #f8f8f8;
   color: #999;
@@ -74,6 +79,15 @@ padding-bottom: env(safe-area-inset-bottom);
 }
 .location text{
   margin-left: 10rpx;
+}
+.words{
+  font-size: 26rpx;
+  color: #999;
+  padding: 6rpx 20rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
 }
 .thorui-input-item {
   width: 100%;
@@ -109,9 +123,4 @@ padding-bottom: env(safe-area-inset-bottom);
   right: 0;
   width: 100%;
   z-index: 99;
-}
-.thorui-counter {
-	font-size: 28rpx;
-	color: #999;
-	padding-top: 8rpx;
 }

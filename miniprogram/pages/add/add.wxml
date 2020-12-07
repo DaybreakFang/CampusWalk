@@ -14,15 +14,17 @@
         <tui-upload value="{{value}}" dealWithValue="{{dealWithValue}}" serverUrl="{{serverUrl}}" bindcomplete="result" bindremove="remove" ></tui-upload>
       </view>
     </tui-list-cell>
-    <view class="location">
+    <view class="content-middle">
+      <view class="location">
       <tui-icon  name="gps" size="{{15}}" color="#999" ></tui-icon>
       <text>计算机学院</text>
     </view>
-    <view class="{{isOpen?'text-input':''}}">
-      <tui-list-cell hover="{{false}}">
-					<view class="thorui-input-item thorui-textarea">
-            <textarea class="thorui-input" placeholder-class="thorui-phcolor" bindtap="focusInput" bindinput="onInput" placeholder="{{isOpen?'把第一句作为标题，更有可能被推荐哦~':'说点什么吧～'}}" maxlength="500"></textarea>
-            <view class="thorui-counter">{{wordsNum}}</view>
+      <view class="words">{{wordsNum}}</view>
+    </view>
+    <view class="{{isOpen?'text-input':''}}" >
+      <tui-list-cell hover="{{false}}" unlined >
+					<view class="thorui-input-item thorui-textarea" catchtap="focusInput">
+            <textarea class="thorui-input" placeholder-class="thorui-phcolor"  bindinput="onInput" placeholder="{{isOpen?'把第一句作为标题，更有可能被推荐哦~':'说点什么吧～'}}" maxlength="500"></textarea>
 					</view>
 				</tui-list-cell>
     </view>

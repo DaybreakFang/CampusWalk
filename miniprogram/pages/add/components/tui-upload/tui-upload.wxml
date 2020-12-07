@@ -1,4 +1,4 @@
-<scroll-view scroll-x class="tui-bg__white">
+<scroll-view scroll-x="{{true}}" class="tui-bg__white"  scroll-with-animation >
 <view class="tui-container">
   <view class="tui-upload-box">
     <view class="tui-image-item" wx:for="{{imageList}}" wx:key="index">
@@ -10,7 +10,7 @@
         <view class="tui-mask-btn" wx:if="{{statusArr[index]==3}}" catchtap="reUpLoad" data-index="{{index}}" hover-class="tui-hover" hover-stay-time="150">重新上传</view>
       </view>
     </view>
-    <view wx:if="{{!forbidAdd && imageList.length < limit}}" class="tui-upload-add" bindtap="chooseImage">
+    <view wx:if="{{!forbidAdd && imageList.length < limit}}" class="tui-upload-add"  bindtap="chooseImage">
       <view class="tui-upload-icon tui-icon-plus"></view>
     </view>
   </view>
