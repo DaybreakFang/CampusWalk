@@ -41,7 +41,7 @@
       </view>
       <view class="tui-operation-right tui-right-flex tui-col-5">
         <view class="tui-operation-item" hover-class="tui-opcity" hover-stay-time="150" bindtap="btnLogin">
-          <text class="login">登 录</text>
+          <text class="login" bindtap="toLogin">登 录</text>
         </view>
       </view>
     </view>

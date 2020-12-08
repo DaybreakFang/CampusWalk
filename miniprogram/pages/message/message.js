@@ -54,6 +54,7 @@ Page({
     ]
   },
   change(e) {
+    console.log(e.detail.index)
     this.setData({
       currentTab: e.detail.index
     })

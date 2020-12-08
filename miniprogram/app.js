@@ -5,11 +5,12 @@ App({
     global_bac_audio_manager: {
       manage: wx.getBackgroundAudioManager(),
       is_play: false
-  }
+  },
+  userData:null
   },
   onLaunch: function () {
     wx.cloud.init({
-      env: 'hg-sign-123',
+      env: 'daybreak-123',
       traceUser: true
     })
   }

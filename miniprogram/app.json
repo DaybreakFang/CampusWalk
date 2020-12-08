@@ -1,16 +1,19 @@
 
 {
   "pages": [
-    "pages/add/add",
     "pages/index/index",
+    "pages/authorize/authorize",
+ 
+    "pages/add/add",
     "pages/profile/profile",
     "pages/blog/blog",
     "pages/attraction/attraction", 
-    "pages/detail/detail",
-   
+    "pages/detail/detail", 
     "pages/cropper/cropper",
     "pages/walk/walk",
     "pages/message/message"
+
+
   ],
   "window": {
     "backgroundTextStyle": "light",

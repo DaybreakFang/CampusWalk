@@ -1,0 +1,18 @@
+<!--pages/login/login.wxml-->
+<navbar back title="" >
+
+<view class="page">
+<view class="page_top">
+<image src="/images/logo.png"></image>
+<text>Tips：授权后解锁更多功能</text>
+</view>
+<view class="page_bottom">
+<button class="isLogin" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+<text>确认授权</text>
+</button>
+<view class="notLogin" bindtap="Goback">
+<text>暂不授权</text>
+</view>
+</view>
+</view>
+</navbar>

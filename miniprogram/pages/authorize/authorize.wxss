@@ -1,0 +1,57 @@
+/* pages/login/login.wxss */
+page{
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+.page{
+  margin: auto;
+}
+.page_top{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500rpx;
+  margin-top: 200rpx;
+  
+}
+.page_top image{
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30rpx;
+  border-radius: 50%;
+  border: 7rpx white solid;
+  
+}
+.page_top text{
+  font-size: 30rpx;
+  vertical-align: middle;
+  margin: auto;  
+  color: white;
+}
+.page_bottom{
+  padding: 200rpx;
+}
+.isLogin{
+  background: white;
+  border-radius: 100rpx;
+  padding: 20rpx 0;
+text-align: center;  
+}
+.isLogin text{
+  font-size: 35rpx;
+  font-weight: bold;
+  color: var(--theme-color);
+}
+.notLogin{
+  border-radius: 35rpx;
+  padding: 40rpx 0; 
+  text-align: center;
+  
+}
+.notLogin text{
+  font-size: 35rpx;
+  font-weight: bold;
+  color: white;
+}
