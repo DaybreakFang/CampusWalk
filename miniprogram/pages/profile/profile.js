@@ -1,4 +1,5 @@
 // pages/profile/profile.js
+const app = getApp();
 Page({
 
   /**
@@ -6,7 +7,11 @@ Page({
    */
   data: {
     title:"我的",
-    isLogin: false
+    isLogin: false,
+    update:false,
+    nickName:"",
+    avatarUrl:""
+
   },
 
   tapEvent(e){
@@ -24,7 +29,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var userData = wx.getStorageSync('userData') || []
+    if(userData.length){
+      let {avatarUrl,nickName} = userData[0]  
+      this.setData({
+        isLogin:true,
+        avatarUrl,nickName
+      })
+    }
   },
 
   /**
@@ -38,7 +50,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var userData = wx.getStorageSync('userData') || []
+    if(this.data.update || userData.length){
+      let {avatarUrl,nickName} = userData[0]  
+      this.setData({
+        isLogin:true,
+        avatarUrl,nickName,
+        update:false
+      })
+    }
   },
 
   /**

@@ -7,17 +7,17 @@
     </view>
     <view wx:else class="header">
       <text class="cancel">取消</text>
-      <text class="issue">发布</text>
+      <text class="issue" bindtap="send">发布</text>
     </view>
     <tui-list-cell padding="0" hover="{{false}}">
       <view class="thorui-upload__box">
-        <tui-upload value="{{value}}" dealWithValue="{{dealWithValue}}" serverUrl="{{serverUrl}}" bindcomplete="result" bindremove="remove" ></tui-upload>
+        <tui-upload value="{{value}}" dealWithValue="{{dealWithValue}}"  bindcomplete="result" bindremove="remove" ></tui-upload>
       </view>
     </tui-list-cell>
     <view class="content-middle">
       <view class="location">
       <tui-icon  name="gps" size="{{15}}" color="#999" ></tui-icon>
-      <text>计算机学院</text>
+      <text>{{location_name}}</text>
     </view>
       <view class="words">{{wordsNum}}</view>
     </view>

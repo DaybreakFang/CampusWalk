@@ -55,15 +55,16 @@ padding-bottom: env(safe-area-inset-bottom);
 }
 .title{
   position: absolute;
-  left: 50%;
   top: 50%;
-  margin-left: -25%;
   z-index: 1;
+  width: 100%;
 }
 .title text{
   font-size: 40rpx;
   color: #fff;
   font-weight: bold;
+  display: block;
+  text-align: center;
 }
 .title p{
   margin-top: 20rpx;

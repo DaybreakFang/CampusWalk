@@ -33,11 +33,6 @@ Component({
       type: Boolean,
       value: false
     },
-    //服务器地址
-    serverUrl: {
-      type: String,
-      value: ""
-    },
     //限制数
     limit: {
       type: Number,
@@ -178,7 +173,10 @@ Component({
            imageArr.push(path);
             status.push("2")
           }
-          console.log('path:',imageArr.length)
+         
+         _this.setData({
+            statusArr: _this.data.statusArr.concat(status)
+          })
           if(imageArr.length!=0){
             wx.navigateTo({
               url: '../cropper/cropper?arr='+JSON.stringify(imageArr),
@@ -191,79 +189,54 @@ Component({
     dealImg(img){
       console.log('我是子组件',img)
       let _this = this;
-      let status = []
          _this.setData({
-            imageList: _this.data.imageList.concat(img),
-            statusArr: _this.data.statusArr.concat(status)
+            imageList: _this.data.imageList.concat(img)
           })
           _this.change()
-
           let start = _this.data.imageList.length - img.length
           for (let j = 0; j < img.length; j++) {
             let index = start + j
             //服务器地址
-            if (_this.data.serverUrl) {
-              _this.uploadImage(index, img[j]).then(() => {
+            // if (_this.data.serverUrl) {
+              _this.uploadImage(index, img[j])
+              .then(() => {
                 _this.change()
               }).catch(() => {
                 _this.change()
               })
-            } else {
-              //无服务器地址则直接返回成功
-              let value = `statusArr[${index}]`
-              _this.setData({
-                [value]: "1"
-              })
-              _this.change()
-            }
+            // } else {
+            //   //无服务器地址则直接返回成功
+            //   let value = `statusArr[${index}]`
+            //   _this.setData({
+            //     [value]: "1"
+            //   })
+            //   _this.change()
+            // }
           }
     },
     uploadImage: function (index, url) {
       let _this = this;
       let status = `statusArr[${index}]`;
       return new Promise((resolve, reject) => {
-        wx.uploadFile({
-          url: this.data.serverUrl,
-          name: this.data.fileKeyName,
-          header: this.data.header,
-          formData: this.data.formData,
+        let suffix = /\.\w+$/.exec(url)
+        wx.cloud.uploadFile({
+          cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 1000000 + suffix,
           filePath: url,
-          success: function (res) {
-            console.log(res)
-            if (res.statusCode == 200) {
-              //返回结果 此处需要按接口实际返回进行修改
-              let d = JSON.parse(res.data.replace(/\ufeff/g, "") || "{}")
-              //判断code，以实际接口规范判断
-              if (d.code % 100 === 0) {
-                // 上传成功 d.url 为上传后图片地址，以实际接口返回为准
-                if (d.url) {
-                  let value = `imageList[${index}]`
+          success:(res)=>{
+            console.log('云相册ID：',res)
+            let value = `imageList[${index}]`
                   _this.setData({
-                    [value]: d.url
+                    [value]: res.fileID,
+                    [status]: res.fileID ? "1" : "3"
                   })
-                }
-                _this.setData({
-                  [status]: d.url ? "1" : "3"
-                })
-              } else {
-                // 上传失败
-                _this.setData({
-                  [status]: "3"
-                })
-              }
-              resolve(index)
-            } else {
-              _this.setData({
-                [status]: "3"
-              })
-              reject(index)
-            }
+                  resolve()
           },
-          fail: function (res) {
+          fail: (err) => {
+            console.error('云相册失败',err)
             _this.setData({
               [status]: "3"
             })
-            reject(index)
+            reject()
           }
         })
       })
@@ -271,7 +244,6 @@ Component({
     },
     delImage: function (e) {
       let index = Number(e.currentTarget.dataset.index)
-
       let imgList = [...this.data.imageList]
       let status = [...this.data.statusArr]
       imgList.splice(index, 1)

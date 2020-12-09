@@ -28,7 +28,7 @@
     <tui-nomore wx:if="{{!pullUpOn}}"></tui-nomore>
     <!--加载loadding-->
 
-    <view class="tui-operation animated bounceInUp">
+    <view class="tui-operation animated bounceInUp" hidden="{{isLogin}}">
 <view class="operation-wrap">
       <view class="tui-operation-left tui-col-7">
         <view class="content-head">

@@ -8,6 +8,7 @@ Page({
   data: {
     opacity: 0,
     scrollTop: 0.5,
+    isLogin:false,
     swiperArr: [
       "/images/banner1.png",
       "/images/banner2.png"
@@ -93,7 +94,8 @@ Page({
       }
     ],
     loadding: false,
-    pullUpOn: true
+    pullUpOn: true,
+    update:false
   },
   //定位授权 前往探索页
   authLocation() {
@@ -155,7 +157,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var userData = wx.getStorageSync('userData') || []
+    if(userData.length){
+      this.setData({
+        isLogin:true
+      })
+    }
   },
 
   /**
@@ -169,7 +176,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var userData = wx.getStorageSync('userData') || []
+    if(this.data.update || userData.length){
+      this.setData({
+        update:false,
+        isLogin:true
+      })
+     }
   },
 
   /**

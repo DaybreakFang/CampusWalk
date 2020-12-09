@@ -14,25 +14,25 @@ Page({
     }],
     message:[
       {
-        nickname:"计算机科学与技术学院",
+        nickname:"飞翔的企鹅",
         desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
         avatar:"/images/avatar.png",
         date:"刚刚"
       },
       {
-        nickname:"计算机科学与技术学院",
+        nickname:"飞翔的企鹅",
         desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
         avatar:"/images/avatar.png",
         date:"刚刚"
       },
       {
-        nickname:"计算机科学与技术学院",
+        nickname:"飞翔的企鹅",
         desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
         avatar:"/images/avatar.png",
         date:"刚刚"
       },
       {
-        nickname:"计算机科学与技术学院",
+        nickname:"飞翔的企鹅",
         desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
         avatar:"/images/avatar.png",
         date:"刚刚"

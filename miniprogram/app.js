@@ -6,7 +6,7 @@ App({
       manage: wx.getBackgroundAudioManager(),
       is_play: false
   },
-  userData:null
+  locationList:[]
   },
   onLaunch: function () {
     wx.cloud.init({

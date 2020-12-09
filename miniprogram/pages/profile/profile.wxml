@@ -2,15 +2,15 @@
 <navbar title="{{title}}">
   <view class="box">
   <view hidden="{{isLogin}}" class="user-wrapper">
-      <navigator url="/pages/login/login" hover-class="opcity" hover-stay-time="150" class="user">
+      <navigator url="/pages/authorize/authorize" hover-class="opcity" hover-stay-time="150" class="user">
         <image class="avatar-img" src="/images/avatar.png"></image>
         <text class="user-info-mobile">请登录</text>
       </navigator>
     </view>
     <view hidden="{{!isLogin}}" class="user">
-      <image class="avatar-img" src="/images/avatar.png"></image>
+      <image class="avatar-img" src="{{avatarUrl}}"></image>
       <view class="user-info-mobile">
-        <text>计算机信息与科学学院</text>
+        <text style="font-weight: bold;">{{nickName}}</text>
       </view>
     </view>
 </view>

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "tui-tag": "components/tui-tag/tui-tag"
   },
   "disableScroll": true
 }

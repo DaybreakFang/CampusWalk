@@ -1,54 +1,85 @@
 // pages/add/add.js
-const MAX_WORDS_NUM = 500
+const MAX_WORDS_NUM = 500;
+var article = 0;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    serverUrl:'',
-    value:[], //初始化图片
-    dealWithValue:[], // 裁剪后的 图片路径
-    isOpen:false, // 是否展开 文本输入区域
-    wordsNum:0
+    value: [], //初始化图片
+    dealWithValue: [], // 裁剪后的 图片路径
+    isOpen: false, // 是否展开 文本输入区域
+    wordsNum: 0,
+    location_name: ""
   },
-  result: function(e) {
-    console.log('结果',e.detail.imgArr)
+  result: function (e) {
+    console.log('结果', e.detail.imgArr)
+    // wx.showModal({
+    //   title: "错误",
+    //   content: "您好像不在校园内，请进入校园后再试试",
+    //   showCancel: false,
+    //   confirmText: "我知道了",
+    //   success: function () {
+    //     wx.navigateBack({})
+    //   }
+    // })
   },
-  remove: function(e) {
+  remove: function (e) {
     //移除图片
-    console.log('移除',e)
+    console.log('移除', e)
   },
-  focusInput(){
+  focusInput() {
     this.setData({
-      isOpen:true
+      isOpen: true
     })
   },
-  blurInput(){
+  blurInput() {
     this.setData({
-      isOpen:false
+      isOpen: false
     })
   },
   onInput(event) {
-    let wordsNum = event.detail.value.length;
-  
-   let   words = `${wordsNum} / ${MAX_WORDS_NUM}`
-    
+    let wordsNum = event.detail.value.trim().length;
+    let words = `${wordsNum} / ${MAX_WORDS_NUM}`
     this.setData({
-      wordsNum:words
+      wordsNum: words
     })
+    // 将字数 赋值给全局
+    article = wordsNum
+
+  },
+  send() {
+    let imgCount = this.data.value.length;
+    this.check(article, imgCount)
+  },
+  check(wordsCount, imgCount) {
+    console.log('word:', wordsCount)
+    console.log('img:', imgCount)
+    let wordsRes = wordsCount ? true : '您还没有添加文本哦！';
+    let imgRes = imgCount ? true : '您还没有添加图片哦！';
+    let res = (wordsRes === true) && (imgRes === true)
+// @todo  未完成 判断
+    if (wordsRes === true) {
+      return wordsRes
+    } else {
+      wx.showModal({
+        title: "友情提示",
+        content: wordsRes,
+        showCancel: false,
+        confirmText: "我知道了",
+      })
+    }
 
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    setTimeout(()=>{
-      this.value=['cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg']
-      this.setData({
-        value:['cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg']
-      })
-    },200)
+    //  let location_name = JSON.parse(options.location_name)
+    //  this.setData({
+    //   location_name
+    //  })
   },
 
   /**

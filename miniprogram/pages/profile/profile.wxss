@@ -33,6 +33,7 @@
 	height: 160rpx;
 	border-radius: 50%;
 	align-self: center;
+	border: 6rpx #fff solid;
 }
 
 .user-info {

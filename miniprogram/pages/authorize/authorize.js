@@ -46,7 +46,7 @@ Page({
   },
   // 检查 新/老用户
   async checkUser(avatarUrl, nickName) {
-    //获取clouddisk是否有当前用户的数据，注意这里默认带了一个where({_openid:"当前用户的openid"})的条件
+    //获取profile_collection是否有当前用户的数据，注意这里默认带了一个where({_openid:"当前用户的openid"})的条件
     const userData = (await db.collection('profile_collection').where({
       _openid: '{openid}'
     }).get()).data
@@ -59,15 +59,23 @@ Page({
           avatarUrl,
           nickName,
           "star_list": [],
+          "message_list":[],
           "role": 0
         }
       })
     } else { //如果有数据，将数据存储到全局对象
-      app.globalData.userData = userData
+      // app.globalData.userData = userData
+      wx.setStorageSync('userData', userData)
       this.uploadMsg(avatarUrl, nickName)
     }
     wx.hideLoading()
-    wx.navigateBack({})
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    prevPage.setData({
+      update: true
+    })
+    wx.navigateBack();
   },
   // 更新 头像 或 昵称
   async uploadMsg(avatarUrl, nickName) {
@@ -84,7 +92,7 @@ Page({
   },
  
   Goback() {
- 
+
     wx.navigateBack()
   },
   /**

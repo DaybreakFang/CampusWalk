@@ -1,14 +1,14 @@
 
 
 <view class="container">
-  <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}" title="计算机科学技术学院" backgroundColor="#f6f6f6" color="#333">
+  <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}" title="{{location_name}}" backgroundColor="#f6f6f6" color="#333">
 			<view class="tui-header-icon" style="margin-top:{{top}}px"><tui-icon name="arrowleft" color="{{opacity > 0.85 ? '#333' : '#fff'}}" bindclick="back"></tui-icon></view>
     </tui-navigation-bar>
     
   <view class="box">
-    <image src="cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg"></image>
+    <image src="{{location_img}}"></image>
     <view class="title">
-      <text>计算机科学技术学院</text>
+      <text>{{location_name}}</text>
       <p>12347条动态</p>
     </view>
     <view class="add">

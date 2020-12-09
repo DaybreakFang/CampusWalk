@@ -52,14 +52,18 @@ margin-left: 20rpx;
   font-weight: 500;
   color: #999
 }
-
+.content-layout{
+  width: 690rpx;
+  text-align: justify;
+}
 .text-content{
   color: #333;
   font-size: 34rpx;
   line-height: 60rpx;
-  text-align: justify;
   word-break: break-all;
   word-wrap: break-word;
+  width: 100%;
+  display: inline-block;
 }
 
 

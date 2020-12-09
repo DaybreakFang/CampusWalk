@@ -1,19 +1,11 @@
-// var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
-// var qqmapsdk;
 
-// // const StuInfo = db.collection('StuInfo')
-// const $ = db.command.aggregate
-// const Memories = db.collection('Memories')
-
-// var app = getApp();
-// var getmarkerData = []
-//使用 微信官方 同声传译 插件
+var app = getApp();
 const db = wx.cloud.database()
-const Attractions = db.collection('Attractions')
+const Attractions = db.collection('attraction_collection')
+//使用 微信官方 同声传译 插件
 var plugin = requirePlugin("WechatSI")
-
 import inArea from './../../utils/inArea'
-import $ from './../../utils/loading'
+// 学校范围
 var pointArr = [{
     longitude: 113.908074,
     latitude: 30.937753
@@ -76,35 +68,9 @@ Page({
     title: '漫游校园',
     isPlay: false,
     isLocation: false,
-    locationTitle:"准备好了吗？",
     locationList: [],
-    loadingShow: false,
-    optionList: [{
-        type: 'black',
-        id: '0',
-        title: '全部',
-        checked: true
-      },
-      {
-        type: 'primary',
-        id: '1',
-        title: '教学',
-        checked: false
-      },
-      {
-        type: 'warning',
-        id: '2',
-        title: '生活',
-        checked: false
-      },
-      {
-        type: 'green',
-        id: '3',
-        title: '风景',
-        checked: false
-      }
-    ]
-
+    nodata: false,
+    update:false
   },
 
   // 授权位置
@@ -123,31 +89,47 @@ Page({
 
   },
   ToAttraction(){
+  
+    let index= this.data.currentImgIndex
+   let location_id = JSON.stringify(this.data.locationList[index]._id) 
+   var userData = wx.getStorageSync('userData') || []
+   if(userData.length){
     wx.navigateTo({
-      url: '../attraction/attraction',
+      url: '../attraction/attraction?id='+location_id,
     })
+this.updateViews(this.data.locationList[index]._id)
+   }else{
+    wx.navigateTo({
+      url: '../authorize/authorize'
+    })
+   }
+  
   },
+  async updateViews(id){
+    await Attractions.doc(id)
+  .update({
+    data:{
+      visitors:db.command.inc(1)
+    }
+  }).then(res=>{
+    console.log('访客量：',res)
+  })
+},
   // 切换 卡片
   swiperChange: function (e) {
-    var a = e.detail.current;
-    var locationTitle = this.data.locationList[a].name
+    let index= e.detail.current;
     this.setData({
-      currentImgIndex: a,
-      locationTitle
+      currentImgIndex: index,
     });
   },
   // 点击 图片 播放
   play: function () {
     var Index = this.data.currentImgIndex;
     const distance = Math.round(this.data.locationList[Index].distance);
-    const name = this.data.locationList[Index].name;
-    const desc = this.data.locationList[Index].desc;
+    const name = this.data.locationList[Index].location_name;
+    const desc = this.data.locationList[Index].location_desc;
     const text = `距离你当前位置${distance}米是${name}。${desc}`
-    console.log('第几页', Index)
     if (!this.data.isPlay) {
-      this.setData({
-        isPlay: true
-      })
       // 转语音并播放
       this.ToSpeech(text)
     } else {
@@ -160,6 +142,7 @@ Page({
   },
   // 文字转语音 content：文字
   ToSpeech(content) {
+    let that = this;
     // 调用 同声传译插件
     plugin.textToSpeech({
       lang: "zh_CN",
@@ -173,22 +156,29 @@ Page({
         AUDIOMANAGER.title = '你好'
         // 开始播放
         AUDIOMANAGER.onPlay(() => {
-          setTimeout(() => {
+          that.setData({
+            isPlay: true
+          })
             console.log("开始播放")
-          }, 800)
         })
         // 播放完毕
         AUDIOMANAGER.onEnded(() => {
+          that.setData({
+            isPlay: false
+          })
           console.log("播放完毕")
         })
       },
       fail: function (res) {
+        wx.showToast({
+          title: '加载失败',
+        })
         console.log("生成失败")
       }
     })
   },
  
-   // 初次加载 附近 10个 所有地标
+   // 初次加载 最近的所有地标
   getLocations() {
     var that = this
     wx.getLocation({ //获取地址
@@ -197,10 +187,17 @@ Page({
         const latitude = res.latitude
         const longitude = res.longitude
         console.log('现在所在位置', latitude, longitude)
+    //  测试 专用 ---- 图书馆
         var point = {
           longitude: 113.913417,
           latitude: 30.935636
         }
+
+        //  上线 记得 开启这个
+        // var point = {
+        //   longitude,
+        //   latitude
+        // }
         // 判断 所在位置是否在校园内
         var inCampus = inArea.inArea(pointArr, point)
         console.log('在里面吗？', inCampus)
@@ -210,28 +207,31 @@ Page({
             .geoNear({
               distanceField: 'distance', // 输出的每个记录中 distance 即是与给定点的距离
               spherical: true,
-              near: db.Geo.Point(113.914785, 30.937605),
-              query: {
-                docType: 'geoNear'
-              },
-              key: 'location', // 若只有 location 一个地理位置索引的字段，则不需填
-              includeLocs: 'location', // 若只有 location 一个是地理位置，则不需填
+              near: db.Geo.Point(longitude, latitude),
+              query: {},
+              key: 'location_point', // 若只有 location 一个地理位置索引的字段，则不需填
+              includeLocs: 'location_point', // 若只有 location 一个是地理位置，则不需填
             })
             .limit(10)
             .end()
             .then(res => {
-              that.setData({
+              console.log('匹配结果', res.list)
+              // 筛选 距离小于300的 地标
+            //  let newArr = res.list.filter((item)=>{
+            //     return item.distance < 300
+            //   })
+            //   console.log('小于300的：',newArr)
+                that.setData({
                 currentImgIndex: 0,
                 locationList: res.list,
-                isLocation: false,
-                locationTitle :res.list[0].name
+                isLocation: false
               })
-              console.log('匹配结果', res.list)
+    
             })
         } else {
           wx.showModal({
             title: "错误",
-            content: "您好像不在校园内，请走进校园再试试",
+            content: "您好像不在校园内，请进入校园后再试试",
             showCancel: false,
             confirmText: "我知道了",
             success: function () {
@@ -240,15 +240,6 @@ Page({
           })
 
         }
-        // qqmapsdk.reverseGeocoder({ //SDK调用
-        //   location: {
-        //     latitude,
-        //     longitude
-        //   },
-        //   success: function (res) {
-        //     console.log( res)
-        //   }
-        // })
       },
       fail: function () {
         wx.showModal({
@@ -265,67 +256,11 @@ Page({
 
   },
 
-  // 切换 分类选项卡
-  optionType(e) {
-    let nType = Number(e.currentTarget.dataset.index);
-    let list = this.data.optionList;
-    for (let i = 0; i < list.length; i++) {
-      list[i].checked = false;
-    }
-    if (list[nType].checked) {
-      list[nType].checked = false;
-    } else {
-      list[nType].checked = true;
-    }
-    // 显示 分类选项卡 的状态
-    this.setData({
-      optionList: this.data.optionList,
-      loadingShow: true
-    })
-    $.loading('玩命加载中...', false)
-
-    // 按类型加载
-    this.getAttData(nType)
-  },
-  // 查询数据库 
-  getAttData(k) {
-
-    if (k) {
-      var condition = {
-        locaType: k
-      }
-    } else {
-      var condition = {
-        docType: 'geoNear'
-      }
-    }
-    var that = this;
-    Attractions.aggregate()
-      .geoNear({
-        distanceField: 'distance', // 输出的每个记录中 distance 即是与给定点的距离
-        spherical: true,
-        near: db.Geo.Point(113.914785, 30.937605),
-        query: condition,
-        key: 'location', // 若只有 location 一个地理位置索引的字段，则不需填
-        includeLocs: 'location', // 若只有 location 一个是地理位置，则不需填
-      })
-      .limit(10)
-      .end()
-      .then(res => {
-        setTimeout(function () {
-          that.setData({
-            currentImgIndex: 0,
-            locationList: res.list,
-            loadingShow: false
-          })
-          $.hideLoading()
-        }, 500)
-        console.log('匹配结果', res.list)
-      })
-
-
-  },
+  
  onLoad: function (options) {
+  this.setData({
+    isLocation: true
+  })
     //第一次加载 所有地标
     this.getLocations();
     
@@ -360,20 +295,16 @@ Page({
   //           });
   //         })
   //   },
-  //   onShow: function () {
-  //     this.mapCtx = wx.createMapContext('myMap')
-
-  //     this.GetTop()
-  //     this.setData({
-  //       isEmerge: "animated " + "bounceInDown"
-  //     })
-  //   },
+    onShow: function () {
+      if(this.data.update){
+       this.ToAttraction()
+       this.setData({
+         update:false
+       })
+      }
+    },
 
   onReady(e) {
-    this.setData({
-      isLocation: true
-    })
-
   },
   // 卡片动画
   // animateIn: function () {
