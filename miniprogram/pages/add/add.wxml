@@ -28,6 +28,6 @@
 					</view>
 				</tui-list-cell>
     </view>
- 
   </view>
+  <uloading id="loading" />
 </navbar>

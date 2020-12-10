@@ -1,6 +1,9 @@
 // pages/attraction/attraction.js
+const app = getApp()
 const db = wx.cloud.database()
-const Attractions = db.collection('attraction_collection')
+const blog_collection = db.collection('blog_collection')
+var locationID = ''
+import $ from './../../utils/loading';
 Page({
 
   /**
@@ -12,92 +15,78 @@ Page({
     scrollTop: 0.5,
     location_name: "",
     location_img: "",
-    blogList: [{
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg",
-        name: '欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜 30ml（欧莱雅彩妆 BB霜 粉BB 遮瑕疵 隔离）',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2342
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/sty1.jpg",
-        name: '德国DMK进口牛奶  欧德堡',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 999
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/xzy1.jpg",
-        name: '【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 666
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/lyd2.jpg",
-        name: '百雀羚套装女补水保湿护肤品',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 236
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '百草味 肉干肉脯 休闲零食 靖江精制猪肉脯200g/袋',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2399
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '短袖睡衣女夏季薄款休闲家居服短裤套装女可爱韩版清新学生两件套 短袖粉色长颈鹿 M码75-95斤',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2399
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2342
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '德国DMK进口牛奶',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 999
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 666
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '百雀羚套装女补水保湿护肤品',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 236
-      }
-    ],
+    blog_Count:0,
+    isSendSuccess:false, // 在发布页是否成功发布
+    blogList: []
   },
   ToAdd() {
-    let location_name = JSON.stringify(this.data.location_name)
+    
+    var datalist = {
+      location_id:locationID,
+      location_name:this.data.location_name
+    }
+    let data = JSON.stringify(datalist)
     wx.navigateTo({
-      url: '../add/add?location_name='+location_name,
+      url: '../add/add?datalist='+ data,
     })
+  },
+ 
+   async GetPointData(currentAttractionData) {
+    // const res = await wx.cloud.callFunction({
+    //   name: "attractionBlog",
+    //   data: {id}
+    // })
+    var {location_name,location_img,_id} = currentAttractionData
+     blog_collection.where({
+      location_name
+    }).get().then((res)=>{
+      console.log('本地结果：',res.data)
+      this.setData({
+          location_name,
+          location_img,
+          blogList:res.data,
+          blog_Count:res.data.length
+        })
+    })
+      // 保存 到 当前 全局
+      locationID = _id
+      setTimeout(()=>{
+        $.hideLoading()
+      },500)
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+ async onLoad(options) {
+    $.loading('玩命加载中...')
+    const locationsListData = app.globalData.locationList // walk页 存的全局的数据
+    // var listCount = Object.keys(locationsListData).length;
+    const currentAttractionData = locationsListData[options.id];
+
+     // 初次加载
+    this.GetPointData(currentAttractionData)
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if(this.data.isSendSuccess){
+      wx.showToast({
+        icon:'none',
+        title: '发布成功！一大波赞美正在路上～',
+      })
+      this.setData({
+        isSendSuccess:false
+      })
+     }
   },
   initNavigation(e) {
     this.setData({
@@ -118,46 +107,6 @@ Page({
       scrollTop: e.scrollTop
     })
   },
-  GetPointData(id) {
-    Attractions.where({
-        _id: id
-      })
-      .field({
-        _id: false,
-        location_name: true,
-        location_img: true
-      })
-      .get()
-      .then(res => {
-        this.setData({
-          location_name: res.data[0].location_name,
-          location_img: res.data[0].location_img
-        })
-      })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    let location_id = JSON.parse(options.id)
-    console.log('获得：', location_id)
-    this.GetPointData(location_id)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

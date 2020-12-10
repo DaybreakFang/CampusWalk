@@ -1,6 +1,14 @@
 // pages/add/add.js
 const MAX_WORDS_NUM = 500;
-var article = 0;
+var textCount = 0;
+var imgCount = 0;
+var txtContent = ''
+var imgList = [] // 上传图片合集
+var location_id = ''
+var userData = wx.getStorageSync('userData')
+const db = wx.cloud.database()
+const blog_collection = db.collection('blog_collection')
+import $ from './../../utils/loading';
 Page({
 
   /**
@@ -15,15 +23,9 @@ Page({
   },
   result: function (e) {
     console.log('结果', e.detail.imgArr)
-    // wx.showModal({
-    //   title: "错误",
-    //   content: "您好像不在校园内，请进入校园后再试试",
-    //   showCancel: false,
-    //   confirmText: "我知道了",
-    //   success: function () {
-    //     wx.navigateBack({})
-    //   }
-    // })
+    // 将图片数 赋值给全局
+    imgCount = e.detail.imgArr.length;
+    imgList = e.detail.imgArr
   },
   remove: function (e) {
     //移除图片
@@ -34,7 +36,7 @@ Page({
       isOpen: true
     })
   },
-  blurInput() {
+  async blurInput() {
     this.setData({
       isOpen: false
     })
@@ -46,40 +48,107 @@ Page({
       wordsNum: words
     })
     // 将字数 赋值给全局
-    article = wordsNum
+    textCount = wordsNum;
+    // 将内容 赋值给全局
+    txtContent = event.detail.value.trim();
 
   },
-  send() {
-    let imgCount = this.data.value.length;
-    this.check(article, imgCount)
-  },
-  check(wordsCount, imgCount) {
-    console.log('word:', wordsCount)
-    console.log('img:', imgCount)
-    let wordsRes = wordsCount ? true : '您还没有添加文本哦！';
-    let imgRes = imgCount ? true : '您还没有添加图片哦！';
-    let res = (wordsRes === true) && (imgRes === true)
-// @todo  未完成 判断
-    if (wordsRes === true) {
-      return wordsRes
+  async send() {
+  
+    var {avatarUrl,nickName,_openid} = userData[0]  
+    if (imgCount == 0) {
+      this.check(true)
+    } else if (textCount < 10) {
+      this.check(false)
     } else {
-      wx.showModal({
-        title: "友情提示",
-        content: wordsRes,
-        showCancel: false,
-        confirmText: "我知道了",
+      $.loading('发布中...')
+      const res = await wx.cloud.callFunction({
+        name: "msgsec",
+        data: {
+          content: txtContent
+        }
       })
+      console.log('检测结果：', res.result.code)
+      if (res.result.code) {
+        console.log('全部通过')
+      blog_collection.add({
+          data:{ 
+            author_id:_openid, // 作者唯一ID
+            author_name:nickName, // 作者昵称
+            author_avatar:avatarUrl, // 作者头像
+            content:txtContent, // 上传文字
+            img_list:imgList, // 上传图片的云存储地址合集
+            like_list:[], // 点赞合集
+            location_id:location_id, // 地标ID
+            location_name:this.data.location_name, // 地标名称
+            update_time: db.serverDate(), //服务端时间
+          }
+        }).then((res)=>{
+          $.hideLoading()
+          if(res._id){
+            
+            var pages = getCurrentPages();
+            var prevPage = pages[pages.length - 2];  //上一个页面
+            //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+            prevPage.setData({
+              isSendSuccess: true
+            })
+            wx.navigateBack();
+            wx.vibrateLong()
+            // 检查图片安全 @todo 待实现 
+          //  this.imgCloudCheck(res._id)
+          }else{
+            wx.showModal({
+              title: "友情提示",
+              content: '发布失败！请稍后重试',
+              showCancel: false,
+              confirmText: "我知道了",
+            })
+          }
+        })
+      } else {
+        $.hideLoading();
+        wx.showModal({
+          title: "友情提示",
+          content: '文本含有违规内容！',
+          showCancel: false,
+          confirmText: "我知道了",
+        })
+      }
     }
-
   },
+  check(type) {
+    let res = type ? '至少需要添加1张图片哦！' : '最少写10个字才能发布哦！';
+    wx.showModal({
+      title: "友情提示",
+      content: res,
+      showCancel: false,
+      confirmText: "我知道了",
+    })
+  },
+  /**
+   * @todo 待实现 
+   *
+   */
+  // async imgCloudCheck(id){
+  //    wx.cloud.callFunction({
+  //     name: "msgsec",
+  //     data: {
+  //       id
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //  let location_name = JSON.parse(options.location_name)
-    //  this.setData({
-    //   location_name
-    //  })
+     let datalist = JSON.parse(options.datalist)
+    let {location_id,location_name} = datalist
+     this.setData({
+      location_name
+     })
+     // 赋值给全局
+     location_id = location_id
   },
 
   /**

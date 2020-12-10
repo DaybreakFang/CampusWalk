@@ -9,11 +9,9 @@ Component({
       type:Array,
       observer: function(a){
      if(a.length){
-      setTimeout(() => {
         this.setData({
           skeletonShow:false
         })
-      }, 800);
      }else{
        return
      }

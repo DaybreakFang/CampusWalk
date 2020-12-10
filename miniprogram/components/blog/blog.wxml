@@ -1,9 +1,7 @@
 <!--components/blog/blog.wxml-->
 <view>
-  
-
-<view class="tui-product-box">
-  <tui-skeleton wx:if="{{skeletonShow}}" backgroundColor="#fafafa" borderRadius="10rpx"></tui-skeleton>
+  <view class="tui-product-box" wx:if="{{list.length}}">
+    <tui-skeleton wx:if="{{skeletonShow}}" backgroundColor="#fafafa" borderRadius="10rpx"></tui-skeleton>
     <view class="tui-product-list">
       <view class="tui-product-container ">
         <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
@@ -11,13 +9,16 @@
             <block>
               <view class="tui-pro-item " hover-class="hover" hover-start-time="{{150}}"
                 data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
-                <image class="tui-pro-img" src="{{item.img}}" mode="widthFix">
+                <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">
-                  <view class="tui-pro-tit ">{{item.name}}</view>
+                  <view class="tui-pro-tit ">{{item.content}}</view>
                   <view>
-                    <view style="float:left"><image class="tui-header-thumb" src="{{item.avatar}}" mode="widthFix"></image><text class="tui-header-title">{{item.nickname}}</text></view>
-                    <view class="tui-pro-pay" style="float:right">{{item.like+"赞"}}</view>
+                    <view style="float:left">
+                      <image class="tui-header-thumb" src="{{item.author_avatar}}" mode="widthFix"></image><text
+                        class="tui-header-title">{{item.author_name}}</text>
+                    </view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like_list.length+"赞"}}</view>
                   </view>
                 </view>
               </view>
@@ -31,13 +32,16 @@
             <block>
               <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}"
                 data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
-                <image class="tui-pro-img" src="{{item.img}}" mode="widthFix">
+                <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">
-                  <view class="tui-pro-tit">{{item.name}}</view>
+                  <view class="tui-pro-tit">{{item.content}}</view>
                   <view>
-                    <view style="float:left"><image class="tui-header-thumb" src="{{item.avatar}}" mode="widthFix"></image><text class="tui-header-title">{{item.nickname}}</text></view>
-                    <view class="tui-pro-pay" style="float:right">{{item.like+"赞"}}</view>
+                    <view style="float:left">
+                      <image class="tui-header-thumb" src="{{item.author_avatar}}" mode="widthFix"></image><text
+                        class="tui-header-title">{{item.author_name}}</text>
+                    </view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like_list.length+"赞"}}</view>
                   </view>
                 </view>
               </view>
@@ -47,4 +51,7 @@
       </view>
     </view>
   </view>
+  <view wx:else>
+  <tui-no-data  imgUrl="/images/img_nodata.png" fixed="{{false}}">这里还没有动态哦</tui-no-data>
+</view>
 </view>

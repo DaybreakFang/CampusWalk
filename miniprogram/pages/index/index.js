@@ -8,94 +8,50 @@ Page({
   data: {
     opacity: 0,
     scrollTop: 0.5,
-    isLogin:false,
+    isLogin: false,
     swiperArr: [
       "/images/banner1.png",
       "/images/banner2.png"
     ],
-    blogList: [{
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/bm2.jpg",
-        name: '欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜 30ml（欧莱雅彩妆 BB霜 粉BB 遮瑕疵 隔离）',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2342
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/sty1.jpg",
-        name: '德国DMK进口牛奶  欧德堡',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 999
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/xzy1.jpg",
-        name: '【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 666
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/lyd2.jpg",
-        name: '百雀羚套装女补水保湿护肤品',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 236
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '百草味 肉干肉脯 休闲零食 靖江精制猪肉脯200g/袋',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2399
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '短袖睡衣女夏季薄款休闲家居服短裤套装女可爱韩版清新学生两件套 短袖粉色长颈鹿 M码75-95斤',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2399
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '欧莱雅（LOREAL）奇焕光彩粉嫩透亮修颜霜',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 2342
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '德国DMK进口牛奶',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 999
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '【第2支1元】柔色尽情丝柔口红唇膏女士不易掉色保湿滋润防水 珊瑚红',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 666
-      },
-
-      {
-        img: "cloud://hg-sign-123.6867-hg-sign-123-1301188928/land_banner/nm1.jpg",
-        name: '百雀羚套装女补水保湿护肤品',
-        avatar: "https://wx.qlogo.cn/mmopen/vi_32/ZvKxZFblJNlOny5YO0LfDNwicEZic2gNcBaYe6Gv2RmfPbiawllGXFGL9vibp6w0wYiam6aN31ZuB5hHFFYwSyTyiaFw/132",
-        nickname: '计算机信息与科学技术学院',
-        like: 236
-      }
-    ],
+    blogList: [],
     loadding: false,
     pullUpOn: true,
-    update:false
+    update: false
+  },
+  scanQRCode() {
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+
+        /**
+         * @todo 扫码后 先进入 walk 页面 单独渲染
+         */
+
+
+         
+        // console.log(res);
+        // const id = JSON.stringify(res.result)
+        // var userData = wx.getStorageSync('userData') || []
+        // if(userData.length){
+        //   wx.navigateTo({
+        //     url: '../attraction/attraction?id=' + id,
+        //   })
+        // }else{
+        //  wx.navigateTo({
+        //    url: '../authorize/authorize'
+        //  })
+        // }
+      },
+      fail: (res) => {
+        console.log(res);
+        wx.showToast({
+          title: '扫描失败',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+
   },
   //定位授权 前往探索页
   authLocation() {
@@ -112,8 +68,8 @@ Page({
         console.log('没有定位授权')
         wx.showModal({
           cancelColor: 'cancelColor',
-          title: '没有授权无法获取位置信息',
-          content: '是否前往设置页面手动开启',
+          title: '无法获取您的位置信息',
+          content: '是否前往设置页面手动开启？',
           success: function (res) {
             if (res.confirm) {
               wx.openSetting({
@@ -135,20 +91,20 @@ Page({
   },
   initNavigation(e) {
     this.setData({
-      opacity:e.detail.opacity
+      opacity: e.detail.opacity
     })
   },
   opcityChange(e) {
     this.setData({
-      opacity:e.detail.opacity
+      opacity: e.detail.opacity
     })
   },
-	onPageScroll(e) {
+  onPageScroll(e) {
     this.setData({
-      scrollTop:e.scrollTop
+      scrollTop: e.scrollTop
     })
   },
-  toLogin(){
+  toLogin() {
     wx.navigateTo({
       url: '../authorize/authorize',
     })
@@ -157,19 +113,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var userData = wx.getStorageSync('userData') || []
-    if(userData.length){
-      this.setData({
-        isLogin:true
-      })
-    }
+   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var userData = wx.getStorageSync('userData') || []
+    if (userData.length) {
+      this.setData({
+        isLogin: true
+      })
+    }
   },
 
   /**
@@ -177,12 +133,12 @@ Page({
    */
   onShow: function () {
     var userData = wx.getStorageSync('userData') || []
-    if(this.data.update || userData.length){
+    if (this.data.update || userData.length) {
       this.setData({
-        update:false,
-        isLogin:true
+        update: false,
+        isLogin: true
       })
-     }
+    }
   },
 
   /**

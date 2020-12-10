@@ -1,20 +1,16 @@
 
 {
   "pages": [
+    "pages/index/index",
+    "pages/walk/walk",
+    "pages/attraction/attraction", 
     "pages/add/add",
     "pages/detail/detail", 
     "pages/blog/blog",
-    
-    "pages/index/index",
-   
-    "pages/walk/walk",
-  
-    "pages/authorize/authorize",
 
-    
+    "pages/authorize/authorize",
     "pages/profile/profile",
-    
-    "pages/attraction/attraction", 
+
  
     "pages/cropper/cropper",
 

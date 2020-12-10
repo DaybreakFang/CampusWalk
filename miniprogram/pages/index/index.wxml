@@ -1,6 +1,6 @@
 <view class="container">
   <tui-navigation-bar splitLine bindinit="initNavigation" dropDownHide bindchange="opcityChange" scrollRatio="0.7"
-    scrollTop="{{scrollTop}}" title="漫游校园" backgroundColor="#f6f6f6" color="#333">
+    scrollTop="{{scrollTop}}" title="校园逛逛" backgroundColor="#f6f6f6" color="#333">
   </tui-navigation-bar>
   <view class="intro-img">
     <image src="../../images/intro.png"></image>
@@ -13,10 +13,10 @@
         </view>
 
         <view class="card">
-          <view style="flex:1">
+          <view style="flex:1" hover-class="animated bounceIn" bindtap="scanQRCode">
             <card type="warning" title="扫一扫" desc="扫描校园地标附近的二维码了解更多" />
           </view>
-          <view style="flex:1;margin-top:3%" bindtap="authLocation">
+          <view style="flex:1;margin-top:3%" hover-class="animated bounceIn" bindtap="authLocation">
             <card type="primary" title="逛一逛" desc="游览与你位置最近10个校园地标景点" />
           </view>
         </view>
@@ -29,22 +29,22 @@
     <!--加载loadding-->
 
     <view class="tui-operation animated bounceInUp" hidden="{{isLogin}}">
-<view class="operation-wrap">
-      <view class="tui-operation-left tui-col-7">
-        <view class="content-head">
-          <image src="/images/logo.png" class="tui-avatar"></image>
-          <view class="tui-title">
-            <text class="nickname ">欢迎来到“漫游校园”</text>
-            <text class="nickname">开启精彩大学生活</text>
+      <view class="operation-wrap">
+        <view class="tui-operation-left tui-col-7">
+          <view class="content-head">
+            <image src="/images/logo.png" class="tui-avatar"></image>
+            <view class="tui-title">
+              <text class="nickname ">欢迎来到“漫游校园”</text>
+              <text class="nickname">开启精彩大学生活</text>
+            </view>
+          </view>
+        </view>
+        <view class="tui-operation-right tui-right-flex tui-col-5">
+          <view class="tui-operation-item" hover-class="tui-opcity" hover-stay-time="150" bindtap="btnLogin">
+            <text class="login" bindtap="toLogin">登 录</text>
           </view>
         </view>
       </view>
-      <view class="tui-operation-right tui-right-flex tui-col-5">
-        <view class="tui-operation-item" hover-class="tui-opcity" hover-stay-time="150" bindtap="btnLogin">
-          <text class="login" bindtap="toLogin">登 录</text>
-        </view>
-      </view>
-    </view>
     </view>
   </view>
 </view>

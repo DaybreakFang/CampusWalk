@@ -63,8 +63,7 @@ Page({
           "role": 0
         }
       })
-    } else { //如果有数据，将数据存储到全局对象
-      // app.globalData.userData = userData
+    } else { //如果有数据，将数据缓存
       wx.setStorageSync('userData', userData)
       this.uploadMsg(avatarUrl, nickName)
     }

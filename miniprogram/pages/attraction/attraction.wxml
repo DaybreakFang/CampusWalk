@@ -1,5 +1,5 @@
 
-
+<view>
 <view class="container">
   <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}" title="{{location_name}}" backgroundColor="#f6f6f6" color="#333">
 			<view class="tui-header-icon" style="margin-top:{{top}}px"><tui-icon name="arrowleft" color="{{opacity > 0.85 ? '#333' : '#fff'}}" bindclick="back"></tui-icon></view>
@@ -9,7 +9,7 @@
     <image src="{{location_img}}"></image>
     <view class="title">
       <text>{{location_name}}</text>
-      <p>12347条动态</p>
+      <p>{{blog_Count}}条动态</p>
     </view>
     <view class="add">
       <view class="add-btn">
@@ -24,10 +24,8 @@
     <text style="color:#00c9ff">推荐</text>
     <text>最新</text>
   </view>
-    
   </view>
-
     <blog list="{{blogList}}" />
-  
- 
+</view>
+<uloading id="loading" />
 </view>
