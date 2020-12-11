@@ -7,16 +7,10 @@
     "pages/add/add",
     "pages/detail/detail", 
     "pages/blog/blog",
-
     "pages/authorize/authorize",
     "pages/profile/profile",
-
- 
     "pages/cropper/cropper",
-
     "pages/message/message"
-
-
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -42,16 +42,11 @@ align-items: flex-start;
 margin-left: 20rpx;
 }
 .tui-title .nickname{
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: 500;
   color: #4a67d6
 }
 
-.tui-title .date{
-  font-size: 28rpx;
-  font-weight: 500;
-  color: #999
-}
 .content-layout{
   width: 690rpx;
   text-align: justify;

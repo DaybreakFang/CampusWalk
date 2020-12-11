@@ -10,8 +10,6 @@ Page({
     userId: ""
   },
 
-
-
   //登录授权
   getUserInfo(e) {
     let that = this;
@@ -59,13 +57,13 @@ Page({
           avatarUrl,
           nickName,
           "star_list": [],
-          "message_list":[],
+          "like_list":[],
           "role": 0
         }
       })
     } else { //如果有数据，将数据缓存
       wx.setStorageSync('userData', userData)
-      this.uploadMsg(avatarUrl, nickName)
+      this.uploadMsg(userData)
     }
     wx.hideLoading()
     var pages = getCurrentPages();
@@ -74,14 +72,18 @@ Page({
     prevPage.setData({
       update: true
     })
-    wx.navigateBack();
+   wx.navigateBack();
   },
   // 更新 头像 或 昵称
-  async uploadMsg(avatarUrl, nickName) {
+  async uploadMsg(userData) {
+    let { star_list,like_list,role,avatarUrl,nickName} = userData[0]
     const result = await db.collection('profile_collection').where({
       _openid: '{openid}'
     }).update({
       data: {
+        star_list,
+        like_list,
+        role,
         avatarUrl,
         nickName
       }

@@ -66,31 +66,15 @@ Page({
     currentImgIndex: 0,
     title: '漫游校园',
     isPlay: false,
-    isLocation: false,
+    isLocation: true,
     locationList: [],
     nodata: false,
     update: false
   },
 
-  // 授权位置
-  authLocation() {
 
-    // this.mapCtx.moveToLocation({
-    //   longitude: "113.914785",
-    //   latitude: "30.937605",
-    //   success: res => {
-    //     console.log("回到原点");
-    //     this.setData({
-    //       scale: 15
-    //     })
-    //   }
-    // })
-
-  },
   ToAttraction() {
-
     let index = this.data.currentImgIndex
-    // let location_id = JSON.stringify(this.data.locationList[index]._id)
     var userData = wx.getStorageSync('userData') || []
     if (userData.length) {
       wx.navigateTo({
@@ -104,6 +88,11 @@ Page({
     }
 
   },
+
+  /**
+   * 访问量 +1
+   * @param {location_id} id 
+   */
   async updateViews(id) {
     Attractions.doc(id)
       .update({
@@ -124,16 +113,14 @@ Page({
   // 点击 图片 播放
   async play() {
     var Index = this.data.currentImgIndex;
-    const distance = Math.round(this.data.locationList[Index].distance);
-    const name = this.data.locationList[Index].location_name;
-    const desc = this.data.locationList[Index].location_desc;
-    const text = `距离你当前位置${distance}米是${name}。${desc}`
+    const {distance,location_name,location_desc} = app.globalData.locationList[Index]
+    let res = distance ? `距离您当前位置${Math.round(distance)}米是${location_name}。${location_desc}` : `您当前所在的位置是${location_name}。${location_desc}`
     if (!this.data.isPlay) {
       this.setData({
         isPlay: true
       })
       // 转语音并播放
-      this.ToSpeech(text)
+      this.ToSpeech(res)
 
     } else {
       // 暂停播放
@@ -222,7 +209,6 @@ Page({
               //   })
               //   console.log('小于300的：',newArr)
               that.setData({
-                currentImgIndex: 0,
                 locationList: res.list,
                 isLocation: false
               })
@@ -256,14 +242,27 @@ Page({
     })
 
   },
-
+   async scanGetLocation(id) {
+    let arr = []
+    const res = await Attractions.doc(id).get() 
+    arr.push(res.data)
+    this.setData({
+      locationList: arr,
+      isLocation: false
+    })
+    app.globalData.locationList = arr
+  },
 
   onLoad: function (options) {
-    this.setData({
-      isLocation: true
-    })
-    //第一次加载 所有地标
-    this.getLocations();
+    if (options.id) {
+      const id = JSON.parse(options.id)
+      this.scanGetLocation(id)
+    } else {
+      //第一次加载 所有地标
+      this.getLocations();
+    }
+
+
 
   },
   onShow: function () {

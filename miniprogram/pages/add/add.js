@@ -22,7 +22,6 @@ Page({
     location_name: ""
   },
   result: function (e) {
-    console.log('结果', e.detail.imgArr)
     // 将图片数 赋值给全局
     imgCount = e.detail.imgArr.length;
     imgList = e.detail.imgArr
@@ -78,6 +77,7 @@ Page({
             author_avatar:avatarUrl, // 作者头像
             content:txtContent, // 上传文字
             img_list:imgList, // 上传图片的云存储地址合集
+            like_count:0, // 点赞人数
             like_list:[], // 点赞合集
             location_id:location_id, // 地标ID
             location_name:this.data.location_name, // 地标名称

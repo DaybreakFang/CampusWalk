@@ -31,6 +31,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    detail(e){
+      let that = this
+      const index = e.currentTarget.dataset.id
+      this.triggerEvent('detail', {
+        singleData: that.data.list[index]
+      })
+    }
   }
 })

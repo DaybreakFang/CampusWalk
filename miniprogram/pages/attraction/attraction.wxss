@@ -104,10 +104,14 @@ padding-bottom: env(safe-area-inset-bottom);
   padding: 0 30rpx;
   margin-top: 20rpx;
 }
-.switch-right text{
+.switch-right{
   color: #444;
   margin-top: 10rpx;
 }
 .switch-right>text{
   margin-right: 20rpx;
+}
+.switch-active{
+ color: #00c9ff;
+ font-weight: bold;
 }

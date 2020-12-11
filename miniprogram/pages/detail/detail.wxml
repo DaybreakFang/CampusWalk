@@ -1,6 +1,5 @@
 <!--pages/detail/detail.wxml-->
-<tui-skeleton wx:if="{{skeletonShow}}" backgroundColor="#fafafa" borderRadius="10rpx"></tui-skeleton>
-<view class="container tui-skeleton">
+<view class="container">
 
   <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}"
     title="动态详情" backgroundColor="#f6f6f6" color="#333">
@@ -8,35 +7,32 @@
       <tui-icon name="arrowleft" color="{{opacity > 0.85 ? '#333' : '#fff'}}" bindclick="back"></tui-icon>
     </view>
   </tui-navigation-bar>
-  <swiper-img imgArr="{{detail.imgArr}}"></swiper-img>
+  <swiper-img imgArr="{{img_list}}"></swiper-img>
   <view class="content">
     <view class="content-head">
-      <image src="/images/avatar.png" class="tui-avatar tui-skeleton-circular"></image>
-      <view class="tui-title tui-skeleton-rect">
-        <text class="nickname ">计算机爱好者协会</text>
-        <text class="date">2010-12-06</text>
+      <image src="{{author_avatar}}" class="tui-avatar"></image>
+      <view class="tui-title">
+        <text class="nickname ">{{author_name}}</text>
       </view>
     </view>
 
     <view class="content-layout">
       <text class="text-content">
-        这是一场很重要的比赛，武汉卓尔在中超目前打的还是不错的，现在积分与我们一样。我们面对这个对手做了充分的准备，他们的战术变化很多，我也认为他们是一支训练有素的队伍。虽然这是一场艰难的比赛，我们也充满了动力去拿到我们想要的分数，实现我们的目标。联赛上半程还有两场比赛，我们也会竭尽全力拿到尽量多的分数。
-        我相信大家比我更了解他，但是就像刚刚提到的一样，这支球队的战术是丰富而多变的，这就意味着他在应对不同比赛时做了充分的准备。我们非常尊重明天的对手，他们最近状态出色，拿到许多分数。
-        对我而言，我还是想保持沉默，我不打算就这个问题做过多的评论。因为这个政策的变化是马上实施了，我们肯定是尊重它，然后在我们力所能及的范围上找到最好的应对的方案，我个人意见并不重要，我们尊重和遵守相关决定。
+        {{content}}
       </text>
     </view>
   </view>
 
-  <view class="tui-operation tui-skeleton">
+  <view class="tui-operation">
     <view class="tui-operation-left tui-col-7">
-      <view class="tui-btn-comment tui-skeleton-fillet">
+      <view class="tui-btn-comment">
         <view class="location">
           <tui-icon name="gps" size="{{16}}" color="#333"></tui-icon>
-          <text>计算机学院</text>
+          <text>{{location_name}}</text>
         </view>
       </view>
     </view>
-    <view class="tui-operation-right tui-right-flex tui-col-5 tui-skeleton-fillet">
+    <view class="tui-operation-right tui-right-flex tui-col-5">
       <view class="tui-operation-item" hover-class="tui-opcity" :hover-stay-time="150">
         <view class="tui-fabulous__box">
           <tui-icon name="{{isLike ? 'agree-fill' : 'agree'}}" color="{{isLike ? '#f74d54' : '#444'}}" size="29"
@@ -45,13 +41,13 @@
             <tui-icon name="agree-fill" color="#f74d54"></tui-icon>
           </view>
         </view>
-        <tui-badge absolute type="white_primary" scaleRatio="{{0.6}}">501</tui-badge>
+        <tui-badge absolute type="white_red" scaleRatio="{{0.7}}" translateX="10px">{{like_count?like_count:''}}</tui-badge>
       </view>
-      <view class="tui-operation-item" bindtap="collection">
+      <view class="tui-operation-item" >
         <tui-icon name="{{isCollection ? 'star-fill' : 'star'}}" size="29"
-          color="{{isCollection ? '#5677fc' : '#444'}}"></tui-icon>
+          color="{{isCollection ? '#fbbd08' : '#444'}}" bindclick="collection"></tui-icon>
       </view>
-      <view class="tui-operation-item " hover-class="tui-opcity" hover-stay-time="150" bindtap="btnShare">
+      <view class="tui-operation-item " hover-class="tui-opcity" hover-stay-time="150" bindclick="btnShare">
         <button open-type="share" class="tui-share-btn">
           <tui-icon name="share" size="31" color="#444"></tui-icon>
         </button>

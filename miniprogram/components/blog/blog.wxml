@@ -7,8 +7,7 @@
         <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
           <block wx:if="{{(index+1)%2!=0}}">
             <block>
-              <view class="tui-pro-item " hover-class="hover" hover-start-time="{{150}}"
-                data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
+              <view class="tui-pro-item " hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
                 <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">
@@ -18,7 +17,7 @@
                       <image class="tui-header-thumb" src="{{item.author_avatar}}" mode="widthFix"></image><text
                         class="tui-header-title">{{item.author_name}}</text>
                     </view>
-                    <view class="tui-pro-pay" style="float:right">{{item.like_list.length+"赞"}}</view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like_count}}赞</view>
                   </view>
                 </view>
               </view>
@@ -30,8 +29,7 @@
         <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
           <block wx:if="{{(index+1)%2==0}}">
             <block>
-              <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}"
-                data-event-opts="{{[['tap',[['detail',['$event']]]]]}}" bindtap="__e">
+              <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
                 <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">
@@ -41,7 +39,7 @@
                       <image class="tui-header-thumb" src="{{item.author_avatar}}" mode="widthFix"></image><text
                         class="tui-header-title">{{item.author_name}}</text>
                     </view>
-                    <view class="tui-pro-pay" style="float:right">{{item.like_list.length+"赞"}}</view>
+                    <view class="tui-pro-pay" style="float:right">{{item.like_count}}赞</view>
                   </view>
                 </view>
               </view>

@@ -1,5 +1,5 @@
 // miniprogram/pages/index/index.js
-
+var userData = wx.getStorageSync('userData')[0] 
 Page({
 
   /**
@@ -18,29 +18,24 @@ Page({
     pullUpOn: true,
     update: false
   },
+  rewrite(...sources){
+    return Object.assign({}, ...sources)
+  },
   scanQRCode() {
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
-
-        /**
-         * @todo 扫码后 先进入 walk 页面 单独渲染
-         */
-
-
-         
-        // console.log(res);
-        // const id = JSON.stringify(res.result)
-        // var userData = wx.getStorageSync('userData') || []
-        // if(userData.length){
-        //   wx.navigateTo({
-        //     url: '../attraction/attraction?id=' + id,
-        //   })
-        // }else{
-        //  wx.navigateTo({
-        //    url: '../authorize/authorize'
-        //  })
-        // }
+        const id = JSON.stringify(res.result)
+        var userData = wx.getStorageSync('userData') || []
+        if(userData.length){
+          wx.navigateTo({
+            url: '../walk/walk?id=' + id,
+          })
+        }else{
+         wx.navigateTo({
+           url: '../authorize/authorize'
+         })
+        }
       },
       fail: (res) => {
         console.log(res);
@@ -113,7 +108,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+
   },
 
   /**

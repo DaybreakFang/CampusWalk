@@ -4,28 +4,32 @@
   <tui-navigation-bar splitLine bindinit="initNavigation" bindchange="opcityChange" scrollTop="{{scrollTop}}" title="{{location_name}}" backgroundColor="#f6f6f6" color="#333">
 			<view class="tui-header-icon" style="margin-top:{{top}}px"><tui-icon name="arrowleft" color="{{opacity > 0.85 ? '#333' : '#fff'}}" bindclick="back"></tui-icon></view>
     </tui-navigation-bar>
-    
   <view class="box">
     <image src="{{location_img}}"></image>
     <view class="title">
       <text>{{location_name}}</text>
-      <p>{{blog_Count}}条动态</p>
+      <p>{{blog_Count ? blog_Count+'条动态':' '}}</p>
     </view>
     <view class="add">
-      <view class="add-btn">
+      <view class="add-btn" >
         <tui-icon  name="send" size="{{20}}" color="#fff"></tui-icon>
         <text bindtap="ToAdd">发表动态</text>
       </view>
     </view>
   </view>
   <view class="switch">
-  <view style="color:#333">全部动态</view>
+  <view style="color:#333; font-weight:bold">全部动态</view>
   <view class="switch-right">
-    <text style="color:#00c9ff">推荐</text>
-    <text>最新</text>
+    <text class="{{isSwitch?'switch-active':''}}" data-sid="0" bindtap="switchTab">最新</text>
+    <text class="{{isSwitch?'':'switch-active'}}" data-sid="1" bindtap="switchTab">推荐</text>
   </view>
   </view>
-    <blog list="{{blogList}}" />
+  <view wx:if="{{isSwitch}}">
+    <blog list="{{NewBlogList}}" binddetail="Todetail"/>
+  </view>
+  <view wx:else>
+    <blog list="{{HotBlogList}}" binddetail="Todetail"/>
+  </view>
 </view>
 <uloading id="loading" />
 </view>

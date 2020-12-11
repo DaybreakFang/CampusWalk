@@ -2,7 +2,9 @@
 const app = getApp()
 const db = wx.cloud.database()
 const blog_collection = db.collection('blog_collection')
-var locationID = ''
+var currentAttractionData = {}
+var currentNewList = []
+var currentHotList = []
 import $ from './../../utils/loading';
 Page({
 
@@ -17,12 +19,13 @@ Page({
     location_img: "",
     blog_Count:0,
     isSendSuccess:false, // 在发布页是否成功发布
-    blogList: []
+    NewBlogList: [],
+    HotBlogList:[],
+    isSwitch:true // 新 热开关
   },
   ToAdd() {
-    
     var datalist = {
-      location_id:locationID,
+      location_id:currentAttractionData._id,
       location_name:this.data.location_name
     }
     let data = JSON.stringify(datalist)
@@ -30,29 +33,54 @@ Page({
       url: '../add/add?datalist='+ data,
     })
   },
- 
-   async GetPointData(currentAttractionData) {
-    // const res = await wx.cloud.callFunction({
-    //   name: "attractionBlog",
-    //   data: {id}
-    // })
-    var {location_name,location_img,_id} = currentAttractionData
-     blog_collection.where({
-      location_name
-    }).get().then((res)=>{
-      console.log('本地结果：',res.data)
-      this.setData({
-          location_name,
-          location_img,
-          blogList:res.data,
-          blog_Count:res.data.length
-        })
+  Todetail(e){
+   const res = e.detail.singleData
+  wx.navigateTo({
+    url: '../detail/detail?data='+JSON.stringify(res),
+  })
+  },
+  switchTab(e){
+    var currentID = Number(e.currentTarget.dataset.sid);
+    this.setData({
+      isSwitch:!Boolean(currentID)
     })
-      // 保存 到 当前 全局
-      locationID = _id
+    if((!currentNewList.length)||(currentHotList.length && currentNewList.length)){
+      return
+    }
+    currentID ? this.GetHotData(this.data.location_name) : this.GetNewData()
+    
+  },
+
+   async GetNewData() {
+    var {location_name,location_img} = currentAttractionData
+    const res = await blog_collection
+     .where({ location_name })
+    .orderBy('update_time','desc') // 按最新 排序
+    .get()
+    this.setData({
+      location_name,
+      location_img,
+      NewBlogList:res.data,
+      blog_Count:res.data.length
+    })
+      // 保存 最新 到 当前 全局
+      currentNewList = res.data
       setTimeout(()=>{
         $.hideLoading()
       },500)
+  },
+  async GetHotData(location_name) {
+    console.log('获取最热')
+   const  res = await  blog_collection
+     .where({ location_name })
+    .orderBy('like_count','desc') // 按最热 排序
+    .get()
+    console.log('最热：',res)
+    this.setData({
+      HotBlogList:res.data
+    })
+      // 保存 最新 到 当前 全局
+      currentHotList = res.data
   },
   /**
    * 生命周期函数--监听页面加载
@@ -61,10 +89,10 @@ Page({
     $.loading('玩命加载中...')
     const locationsListData = app.globalData.locationList // walk页 存的全局的数据
     // var listCount = Object.keys(locationsListData).length;
-    const currentAttractionData = locationsListData[options.id];
-
+  // 保存 到 当前 全局
+    currentAttractionData = locationsListData[options.id];
      // 初次加载
-    this.GetPointData(currentAttractionData)
+    this.GetNewData()
   },
 
   /**
