@@ -13,16 +13,20 @@
         </view>
 
         <view class="card">
-          <view style="flex:1" hover-class="animated bounceIn" bindtap="scanQRCode">
+          <view style="flex:1" hover-class="animated headShake" bindtap="scanQRCode">
             <card type="warning" title="扫一扫" desc="扫描校园地标附近的二维码了解更多" />
           </view>
-          <view style="flex:1;margin-top:3%" hover-class="animated bounceIn" bindtap="authLocation">
+          <view style="flex:1;margin-top:3%" hover-class="animated headShake" bindtap="authLocation">
             <card type="primary" title="逛一逛" desc="游览与你位置最近10个校园地标景点" />
           </view>
         </view>
       </view>
     </view>
-    <blog list="{{blogList}}" />
+    <tui-divider size="30">
+    <!-- <tui-icon name="satisfied" size="20"></tui-icon> -->
+    <text class="tui-text">校园热门(每10分钟更新一次)</text>
+  </tui-divider>
+    <blog list="{{blogList}}" binddetail="Todetail" />
     <!--加载loadding-->
     <tui-loadmore wx:if="{{loadding}}" index="3" type="primary"></tui-loadmore>
     <tui-nomore wx:if="{{!pullUpOn}}"></tui-nomore>

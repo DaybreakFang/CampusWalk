@@ -1,5 +1,6 @@
 // pages/profile/profile.js
 const app = getApp();
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -23,7 +24,6 @@ Page({
       wx.navigateTo({
         url: '../blog/blog?type='+index,
       })
-   
   },
   /**
    * 生命周期函数--监听页面加载

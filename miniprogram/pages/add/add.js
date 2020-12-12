@@ -1,11 +1,11 @@
 // pages/add/add.js
+const app =getApp()
 const MAX_WORDS_NUM = 500;
 var textCount = 0;
 var imgCount = 0;
 var txtContent = ''
 var imgList = [] // 上传图片合集
 var location_id = ''
-var userData = wx.getStorageSync('userData')
 const db = wx.cloud.database()
 const blog_collection = db.collection('blog_collection')
 import $ from './../../utils/loading';
@@ -53,7 +53,7 @@ Page({
 
   },
   async send() {
-  
+    var userData = wx.getStorageSync('userData')
     var {avatarUrl,nickName,_openid} = userData[0]  
     if (imgCount == 0) {
       this.check(true)
@@ -86,7 +86,7 @@ Page({
         }).then((res)=>{
           $.hideLoading()
           if(res._id){
-            
+       
             var pages = getCurrentPages();
             var prevPage = pages[pages.length - 2];  //上一个页面
             //直接调用上一个页面的setData()方法，把数据存到上一个页面中去

@@ -8,25 +8,15 @@ const db = cloud.database()
 exports.main = async (event, context) => {
  // likeData = {nickName,avaTarUrl,content,_id,author_id,_openid}
   // 接受到 点赞人 的 OPENID 点赞 需要操作 blog_collection message_collection
-  let {nickName,avaTarUrl,content,_id,author_id,_openid} = event.cloudLikeUser;
-    const res1 = await  db.collection('blog_collection').doc(_id)
+  let {nickName,avatarUrl,content,_id,author_id,_openid} = event.cloudLikeUser;
+    await  db.collection('blog_collection').doc(_id)
       .update({
         data: {
           like_count: db.command.inc(1),
           like_list:db.command.push(_openid)
         }
       })
-    const res2 = await db.collection('message_collection').add({
-      data:{
-        origin_name:nickName,
-        origin_avatar:avaTarUrl,
-        blog_content:content,
-        blog_id:_id,
-        receive_id:author_id,
-        origin_time:db.serverDate(),
-        message_type:0
-      }
-    })
+   
     const ID =_openid
    await  db.collection('profile_collection')
     .where({
@@ -36,7 +26,21 @@ exports.main = async (event, context) => {
       data: {
         like_list:db.command.push(_id)
       }
-    }).then((res)=>{
-      return res
     })
+
+if(ID == author_id){
+  return 'self'
+}
+   await db.collection('message_collection').add({
+      data:{
+        origin_name:nickName,
+        origin_avatar:avatarUrl,
+        blog_content:content,
+        blog_id:_id,
+        receive_id:author_id,
+        origin_time:db.serverDate(),
+        message_type:0
+      }
+    })
+    return 'ok'
 }

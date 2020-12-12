@@ -1,10 +1,11 @@
 // pages/detail/detail.js
-
+const app = getApp()
 const db = wx.cloud.database()
 var likeData = {}
 var blogID = ''
-var cloudLikeUser = ''
-var cloudCollection = ''
+var cloudLikeUser = 1
+var cloudCollection = 1
+import $ from './../../utils/loading';
 Page({
 
   /**
@@ -64,7 +65,6 @@ Page({
 
   },
   collection() {
-
     if (this.data.isCollection) {
       this.setData({
         isCollection: false
@@ -83,32 +83,58 @@ Page({
 
 
   },
+  async getDBData(id){
+      const res = await db.collection('blog_collection').doc(id).get()
+      console.log('数据库查找的',res.data)
+      let {
+        author_avatar,
+        author_name,
+        content,
+        img_list,
+        like_count,
+        location_name
+      } = res.data
+      this.setData({
+        author_avatar,
+        author_name,
+        img_list,
+        content,
+        like_count,
+        location_name
+      })
+      $.hideLoading()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    $.loading('玩命加载中...')
     var userData = wx.getStorageSync('userData')[0]
     /**
      * 两种进入方式
      * 1. 通过 attraction 页面进入 无需要调用数据库
-     * @todo 2. 通过 message 页面 获取文章 ID 进入  需要 doc(id) 查询 attraction_collection 数据库
+     *  2. 通过 message 页面 获取文章 ID 进入  需要 doc(id) 查询 attraction_collection 数据库
      * 
      */
-    console.log('我的点赞 和收藏：', userData.star_list, userData.like_list)
-    const res = JSON.parse(options.data)
-    //赋值 文章ID 到全局
-    blogID = res._id
     let {
       nickName,
       avatarUrl,
       _openid
     } = userData
+    if(options.id){
+      const id = JSON.parse(options.id)
+      this.getDBData(id)
+      return
+    }
+    const res = JSON.parse(options.data)
+    //赋值 文章ID 到全局
+    blogID = res._id
     let {
       content,
       _id,
       author_id
     } = res
-   
+
     likeData = {
       nickName,
       avatarUrl,
@@ -137,6 +163,7 @@ Page({
       like_count,
       location_name
     })
+    $.hideLoading()
   },
 
   /**
@@ -149,23 +176,66 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var userData = wx.getStorageSync('userData')[0]
-    console.log('blogID::::::',blogID)
-    let str = blogID + ''
-    let star = userData.star_list.indexOf(str)
-    let like = userData.like_list.indexOf(str)
+  async getLikeCol(k) {
+    const res = await new Promise((resolve, reject) => {
+      db.collection('profile_collection').where({
+        _openid: '{openid}',
+      }).field({
+        _id: false,
+        [k]: true
+      }).get().then((res) => {
+        resolve(res.data[0])
+      })
+    })
+    return (res)
+
+  },
+
+  async onShow() {
+    var likeCollection = app.globalData.likeCollection
+    var star_arr = likeCollection.star_list; // arr
+    var like_arr = likeCollection.like_list; // arr
+    var str = blogID + ''
+    if (star_arr.length == 0) {
+      const temp = await this.getLikeCol('star_list')
+      star_arr = temp.star_list
+      let star = star_arr.indexOf(str)
+      if (star != -1) {
+        this.setData({
+          isCollection: true
+        })
+        console.log('你已经收藏过了')
+      }
+    }
+    if (like_arr.length == 0) {
+      const temp = await this.getLikeCol('like_list')
+      like_arr = temp.like_list
+      let like = like_arr.indexOf(str)
+      if (like != -1) {
+        this.setData({
+          isLike: true
+        })
+        console.log('你已经点赞过了')
+      }
+      return
+    }
+
+    console.log('全局有数据')
+    let star = star_arr.indexOf(str)
+    let like = like_arr.indexOf(str)
     if (star != -1) {
       this.setData({
         isCollection: true
       })
+      console.log('你已经收藏过了')
     }
     if (like != -1) {
       this.setData({
         isLike: true
       })
+      console.log('你已经点赞过了')
     }
-    console.log('本文ID：', blogID)
+
   },
 
   /**
@@ -179,22 +249,22 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   async onUnload() {
-    if ((!cloudLikeUser) && (!cloudCollection)) {
+    if ((cloudLikeUser == 1) && (!cloudCollection == 1)) {
       return
     }
-    var userData = wx.getStorageSync('userData')[0]
-    if (cloudLikeUser) {
+    var likeCollection = app.globalData.likeCollection
+    if (cloudLikeUser && (cloudLikeUser!=1)) {
       await wx.cloud.callFunction({
         name: "likecollection",
         data: {
           cloudLikeUser: cloudLikeUser,
         }
       }).then((res) => {
-        userData.like_list.push(likeData._id);
+        likeCollection.like_list.push(cloudLikeUser._id);
         console.log('点赞处理到云端', res)
       })
     }
-    if (cloudCollection) {
+    if (cloudCollection && (cloudCollection!=1)) {
       await db.collection('profile_collection')
         .where({
           _openid: '{openid}'
@@ -204,7 +274,7 @@ Page({
             star_list: db.command.push(likeData._id)
           }
         }).then((res) => {
-          userData.star_list.push(likeData._id);
+          likeCollection.star_list.push(likeData._id);
           console.log('收藏：', res)
         })
     }

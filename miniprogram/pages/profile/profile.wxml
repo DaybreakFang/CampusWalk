@@ -28,25 +28,25 @@
 
 <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="card-fill" size="{{24}}" color="#a5673f" bind:__l="__l"></tui-icon>
+        <tui-icon  name="card-fill" size="{{24}}" color="#00c9ff" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">发布规范</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="explain-fill" size="{{24}}" color="#e03997" bind:__l="__l"></tui-icon>
+        <tui-icon  name="explain-fill" size="{{24}}" color="#00c9ff" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">使用帮助</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="community-fill" size="{{24}}" color="#39b54a" bind:__l="__l"></tui-icon>
+        <tui-icon  name="community-fill" size="{{24}}" color="#00c9ff" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">关于我们</view>
       </view>
   </tui-list-cell>
   <tui-list-cell bindclick="detail" arrow="{{true}}">
     <view class="tui-item-box">
-        <tui-icon  name="mail-fill" size="{{24}}" color="#9c26b0" bind:__l="__l"></tui-icon>
+        <tui-icon  name="mail-fill" size="{{24}}" color="#00c9ff" bind:__l="__l"></tui-icon>
         <view class="tui-list-cell_name">意见反馈</view>
       </view>
   </tui-list-cell>

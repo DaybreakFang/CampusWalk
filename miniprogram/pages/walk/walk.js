@@ -94,13 +94,11 @@ Page({
    * @param {location_id} id 
    */
   async updateViews(id) {
-    Attractions.doc(id)
+   await Attractions.doc(id)
       .update({
         data: {
           visitors: db.command.inc(1)
         }
-      }).then(res => {
-        console.log('访客量：', res)
       })
   },
   // 切换 卡片
@@ -180,7 +178,7 @@ Page({
           latitude: 30.935636
         }
 
-        //  上线 记得 开启这个
+        // 上线 记得 开启这个
         // var point = {
         //   longitude,
         //   latitude
@@ -202,16 +200,13 @@ Page({
             .limit(10)
             .end()
             .then(res => {
-              console.log('匹配结果', res.list)
-              // 筛选 距离小于300的 地标
-              //  let newArr = res.list.filter((item)=>{
-              //     return item.distance < 300
-              //   })
-              //   console.log('小于300的：',newArr)
+              wx.vibrateLong()
+              // console.log('匹配结果', res.list)
               that.setData({
                 locationList: res.list,
                 isLocation: false
               })
+             
               // 赋值给全局
               app.globalData.locationList = res.list
             })

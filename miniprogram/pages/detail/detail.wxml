@@ -55,6 +55,6 @@
     </view>
   </view>
 
-
+  <uloading id="loading" />
   <view class="tui-safearea-bottom"></view>
 </view>

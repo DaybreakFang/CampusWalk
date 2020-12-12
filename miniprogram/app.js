@@ -6,7 +6,11 @@ App({
       manage: wx.getBackgroundAudioManager(),
       is_play: false
   },
-  locationList:{}
+  locationList:{},
+  likeCollection:{
+    like_list:[],
+    star_list:[]
+  }
   },
   onLaunch: function () {
     wx.cloud.init({

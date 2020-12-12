@@ -1,5 +1,7 @@
 <navbar title="{{title}}" back>
 <view class="container">
-    <blog list="{{blogList}}" />
+    <blog list="{{blogList}}" binddetail="Todetail"/>
+   
 </view>
+<uloading id="loading" />
 </navbar>

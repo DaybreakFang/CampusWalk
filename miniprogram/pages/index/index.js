@@ -1,5 +1,6 @@
 // miniprogram/pages/index/index.js
-var userData = wx.getStorageSync('userData')[0] 
+const db = wx.cloud.database()
+var list = []
 Page({
 
   /**
@@ -10,31 +11,46 @@ Page({
     scrollTop: 0.5,
     isLogin: false,
     swiperArr: [
-      "/images/banner1.png",
-      "/images/banner2.png"
+      "cloud://daybreak-123.6461-daybreak-123-1301188928/blog/1607768259486-343527.2745673217.png",
+      "cloud://daybreak-123.6461-daybreak-123-1301188928/blog/未标题-2.png"
     ],
     blogList: [],
     loadding: false,
     pullUpOn: true,
-    update: false
+    update: false,
+    pageIndex:1
   },
-  rewrite(...sources){
-    return Object.assign({}, ...sources)
-  },
+ 
+
+  Todetail(e){
+    const res = e.detail.singleData
+    var userData = wx.getStorageSync('userData') || []
+    if (userData.length) {
+      wx.navigateTo({
+        url: '../detail/detail?data='+JSON.stringify(res),
+      })
+    } else {
+      wx.navigateTo({
+        url: '../authorize/authorize'
+      })
+    }
+   
+   },
+
   scanQRCode() {
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
         const id = JSON.stringify(res.result)
         var userData = wx.getStorageSync('userData') || []
-        if(userData.length){
+        if (userData.length) {
           wx.navigateTo({
             url: '../walk/walk?id=' + id,
           })
-        }else{
-         wx.navigateTo({
-           url: '../authorize/authorize'
-         })
+        } else {
+          wx.navigateTo({
+            url: '../authorize/authorize'
+          })
         }
       },
       fail: (res) => {
@@ -46,7 +62,6 @@ Page({
         })
       }
     })
-
   },
   //定位授权 前往探索页
   authLocation() {
@@ -107,7 +122,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  async onLoad(options) {
+    const res = await db.collection('blog_collection')
+      .aggregate()
+      .sample({
+        size: 50
+      })
+      .end()
+   
+      list = res.list
+      console.log('总数据：',list)
+      const arr =res.list.slice(0,4)
+    this.setData({
+      blogList: arr
+    })
 
   },
 
@@ -150,42 +178,43 @@ Page({
 
   },
 
-  onPullDownRefresh: function () {
-    //延时为了看效果
-    setTimeout(() => {
-      this.setData({
-        // productList: this.data.loadData,
-        // pageIndex: 1,
-        pullUpOn: true,
-        loadding: false
-      }, () => {
-        wx.stopPullDownRefresh();
-      })
-    }, 1000)
-  },
+  // onPullDownRefresh: function () {
+  //   //延时为了看效果
+  //   setTimeout(() => {
+  //     this.setData({
+  //       // productList: this.data.loadData,
+  //       // pageIndex: 1,
+  //       pullUpOn: true,
+  //       loadding: false
+  //     }, () => {
+  //       wx.stopPullDownRefresh();
+  //     })
+  //   }, 1000)
+  // },
 
   onReachBottom: function () {
     if (!this.data.pullUpOn) return;
+    console.log('触底了')
     this.setData({
       loadding: true
     }, () => {
-      // setTimeout(() => {
-      //   if (this.data.pageIndex == 3) {
-      //     this.setData({
-      //       loadding: false,
-      //       pullUpOn: false
-      //     })
-      //   } else {
-      //     this.setData({
-      //       productList: this.data.productList.concat(this.data.loadData),
-      //       pageIndex: this.data.pageIndex + 1,
-      //       loadding: false
-      //     })
-      //   }
-      // }, 10);
+      setTimeout(() => {
+        if (this.data.pageIndex == 3) {
+          this.setData({
+            loadding: false,
+            pullUpOn: false
+          })
+        } else {
+          const arr = list.slice(4,4)
+          this.setData({
+            blogList: this.data.blogList.concat(arr),
+            pageIndex: this.data.pageIndex + 1,
+            loadding: false
+          })
+        }
+      }, 10);
     })
   },
-
 
 
   /**

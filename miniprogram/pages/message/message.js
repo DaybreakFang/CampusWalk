@@ -1,4 +1,7 @@
 // pages/message/message.js
+const db = wx.cloud.database()
+const message_collection = db.collection('message_collection')
+var util = require('../../utils/formatDate');
 Page({
 
   /**
@@ -7,68 +10,57 @@ Page({
   data: {
     title: "消息中心",
     currentTab: 0,
+    isClose: false,
     navbar: [{
       name: "我的消息"
     }, {
       name: "系统通知"
     }],
-    message:[
-      {
-        nickname:"飞翔的企鹅",
-        desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
-        avatar:"/images/avatar.png",
-        date:"刚刚"
-      },
-      {
-        nickname:"飞翔的企鹅",
-        desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
-        avatar:"/images/avatar.png",
-        date:"刚刚"
-      },
-      {
-        nickname:"飞翔的企鹅",
-        desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
-        avatar:"/images/avatar.png",
-        date:"刚刚"
-      },
-      {
-        nickname:"飞翔的企鹅",
-        desc:"赞了你的动态【这里充满了换联赛看房竞赛分三赛看过晒功德分赛",
-        avatar:"/images/avatar.png",
-        date:"刚刚"
-      }
-    ],
-    official:[
-      // {
-      //   nickname:"漫游校园官方",
-      //   desc:"你发布的《这里充满...》已被精选至首页",
-      //   avatar:"/images/avatar.png",
-      //   date:"刚刚"
-      // },
-      // {
-      //   nickname:"漫游校园官方",
-      //   desc:"你发布的《这里充满...》已被精选至首页",
-      //   avatar:"/images/avatar.png",
-      //   date:"刚刚"
-      // }
-    ]
+    messageList: [],
+    officialList: []
   },
   change(e) {
-    console.log(e.detail.index)
     this.setData({
       currentTab: e.detail.index
     })
   },
-  detail(){
+  detail(e) {
+    const id = JSON.stringify(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../detail/detail',
+      url: '../detail/detail?id=' + id,
     })
+    // 关闭小红点
+    this.setData({
+      isClose: true
+    })
+    // 删除消息
+    this.delData(e.currentTarget.dataset.msg)
+  },
+  async delData(e) {
+    const res = await db.collection('message_collection').doc(e).remove()
+    console.log('删除：', res)
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  async onLoad() {
+    const res = await message_collection.where({
+      receive_id: '{openid}'
+    }).orderBy('origin_time', 'desc').get()
+    const dataList = res.data.map((item, index) => {
+      item.origin_time = util.timeago(item.origin_time, 'Y年M月D日');
+      return item
+    })
+    const messageList = dataList.filter((item, index) => {
+      return item.message_type == 0
+    })
+    const officialList = dataList.filter((item, index) => {
+      return item.message_type == 1
+    })
+    this.setData({
+      messageList,
+      officialList
+    })
   },
 
   /**

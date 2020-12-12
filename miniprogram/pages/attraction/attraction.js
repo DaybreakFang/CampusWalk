@@ -40,6 +40,7 @@ Page({
   })
   },
   switchTab(e){
+    wx.vibrateShort()
     var currentID = Number(e.currentTarget.dataset.sid);
     this.setData({
       isSwitch:!Boolean(currentID)

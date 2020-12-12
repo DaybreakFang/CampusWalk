@@ -3,6 +3,7 @@
   
   "usingComponents": {
      "card":"components/card/card",
+     "tui-divider":"components/tui-divider/tui-divider",
      "swiper-activity":"components/swiper-activity/swiper-activity"
   }
 }

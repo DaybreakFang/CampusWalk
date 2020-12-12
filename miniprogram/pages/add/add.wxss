@@ -95,14 +95,14 @@ padding-bottom: env(safe-area-inset-bottom);
   font-size: 32rpx;
 }
 .thorui-textarea {
-  min-height: 500rpx;
+  min-height: 800rpx; 
   flex-direction: column;
   align-items: flex-end;
 }
 .thorui-textarea textarea {
   width: 100%;
   padding: 0;
-  height: 200rpx;
+  /* height: 200rpx; */
 }
 .thorui-input {
   flex: 1;
