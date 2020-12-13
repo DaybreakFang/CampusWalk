@@ -24,6 +24,7 @@ Page({
     isSwitch:true // 新 热开关
   },
   ToAdd() {
+   
     var datalist = {
       location_id:currentAttractionData._id,
       location_name:this.data.location_name

@@ -1,6 +1,7 @@
 // miniprogram/pages/index/index.js
 const db = wx.cloud.database()
 var list = []
+import $ from './../../utils/loading';
 Page({
 
   /**
@@ -38,6 +39,7 @@ Page({
    },
 
   scanQRCode() {
+    wx.vibrateShort()
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
@@ -65,6 +67,7 @@ Page({
   },
   //定位授权 前往探索页
   authLocation() {
+    wx.vibrateShort()
     wx.authorize({
       scope: 'scope.userLocation', //发起定位授权
       success: function () {
@@ -123,6 +126,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    $.loading('玩命加载中...')
     const res = await db.collection('blog_collection')
       .aggregate()
       .sample({
@@ -136,7 +140,7 @@ Page({
     this.setData({
       blogList: arr
     })
-
+    $.hideLoading()
   },
 
   /**

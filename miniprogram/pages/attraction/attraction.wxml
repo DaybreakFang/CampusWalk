@@ -11,9 +11,9 @@
       <p>{{blog_Count ? blog_Count+'条动态':' '}}</p>
     </view>
     <view class="add">
-      <view class="add-btn" >
+      <view class="add-btn" hover-class="press">
         <tui-icon  name="send" size="{{20}}" color="#fff"></tui-icon>
-        <text bindtap="ToAdd">发表动态</text>
+        <text bindtap="ToAdd" >发表动态</text>
       </view>
     </view>
   </view>

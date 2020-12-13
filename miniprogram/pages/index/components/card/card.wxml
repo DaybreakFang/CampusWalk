@@ -1,9 +1,15 @@
 <!--pages/index/components/card/card.wxml-->
-<view class="intro-box {{'bg-' + type}}">
-  <view class="box-layout">
-    <view class="box-desc">
-      <p>{{title}}</p>
-      <text>{{desc}}</text>
+<view class="intro-box" hover-class="press">
+  <view class="box-layout {{'bg-' + type}}" >
+    <view class="avatar {{'sec-' + type}}" >
+      <tui-icon name="{{icon}}" bold size="{{size}}" color="{{color}}"></tui-icon>
     </view>
+    <text>{{title}}</text>
   </view>
+  <view class="walk">{{desc}}</view>
+    <!-- <view class="box-desc">
+      <p>{{title}}</p>
+      <text></text>
+    </view> -->
+
 </view>

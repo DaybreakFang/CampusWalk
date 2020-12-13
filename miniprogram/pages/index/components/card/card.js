@@ -9,7 +9,10 @@ Component({
       value: 'primary'
     },
     title:String,
-    desc:String
+    desc:String,
+    icon:String,
+    color:String,
+    size:Number
   },
 
   /**

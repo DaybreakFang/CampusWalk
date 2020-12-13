@@ -56,6 +56,7 @@ Page({
         isLike: true,
         like_count: this.data.like_count + 1
       })
+      wx.vibrateShort()
       wx.showToast({
         title: "感谢点赞，推荐已收到~",
         icon: 'none'
@@ -65,12 +66,14 @@ Page({
 
   },
   collection() {
+ 
     if (this.data.isCollection) {
       this.setData({
         isCollection: false
       })
       cloudCollection = ''
     } else {
+      wx.vibrateShort()
       this.setData({
         isCollection: true
       })

@@ -22,16 +22,18 @@ height: 100vh
   /* border-bottom-left-radius: 56rpx 46rpx; */
 
 }
-/* .intro-img::after{
+.intro-img::after{
   content: "";
   position: absolute;
-  top: 26%;
+  top: 420rpx;
   right: 0;
-  height: 100rpx;
+  height: 20rpx;
   width: 100%;
-  background: linear-gradient(to top, #4facfe 0%, #00f2fe 100%);
+  background: #fafafa;
   z-index: 2;
-} */
+  /* border-top-left-radius: 14rpx;
+  border-top-right-radius: 14rpx; */
+}
 .main-content{
   box-sizing: border-box;
   position: absolute;
@@ -40,9 +42,6 @@ height: 100vh
 }
 .intro-wrap{
   padding: 0 25rpx;
-  margin-top: 30rpx;
-  padding: 0 25rpx;
-  margin-top: 20rpx;
   margin-bottom: 10rpx;
 }
 .intro-layout{
@@ -150,11 +149,11 @@ margin-left: 20rpx;
 
 
 .login{
-  height: 76rpx;
-  line-height: 76rpx;
-  font-size: 34rpx;
-  padding: 0 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  padding: 0 30rpx;
   border-radius: 14rpx;
   background: #00c9ff;
-  color: #111;
+  color: #333;
 }
