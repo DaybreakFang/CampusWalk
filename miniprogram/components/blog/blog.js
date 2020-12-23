@@ -8,13 +8,13 @@ Component({
     list:{
       type:Array,
       observer: function(a){
-     if(a.length){
-        this.setData({
-          skeletonShow:false
-        })
-     }else{
-       return
-     }
+    //  if(a.length){
+    //     this.setData({
+    //       skeletonShow:false
+    //     })
+    //  }else{
+    //    return
+    //  }
       }
     
     },
@@ -24,7 +24,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    skeletonShow:true
+    // skeletonShow:true
   },
 
   /**

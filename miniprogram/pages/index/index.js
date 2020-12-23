@@ -12,7 +12,7 @@ Page({
     scrollTop: 0.5,
     isLogin: false,
     swiperArr: [
-      "cloud://daybreak-123.6461-daybreak-123-1301188928/blog/1607768259486-343527.2745673217.png",
+      "cloud://daybreak-123.6461-daybreak-123-1301188928/blog/默认文件1608634844631.png",
       "cloud://daybreak-123.6461-daybreak-123-1301188928/blog/未标题-2.png"
     ],
     blogList: [],
@@ -67,7 +67,7 @@ Page({
   },
   //定位授权 前往探索页
   authLocation() {
-    wx.vibrateShort()
+   
     wx.authorize({
       scope: 'scope.userLocation', //发起定位授权
       success: function () {
@@ -75,6 +75,7 @@ Page({
         wx.navigateTo({
           url: '../walk/walk',
         })
+        wx.vibrateShort()
       },
       fail() {
         //如果用户拒绝授权，则要告诉用户不授权就不能使用，引导用户前往设置页面。
@@ -130,15 +131,14 @@ Page({
     const res = await db.collection('blog_collection')
       .aggregate()
       .sample({
-        size: 50
+        size: 20
       })
       .end()
-   
       list = res.list
       console.log('总数据：',list)
-      const arr =res.list.slice(0,4)
+      // const arr =res.list.slice(0,4)
     this.setData({
-      blogList: arr
+      blogList: list
     })
     $.hideLoading()
   },
@@ -149,9 +149,11 @@ Page({
   onReady: function () {
     var userData = wx.getStorageSync('userData') || []
     if (userData.length) {
+     setTimeout(() => {
       this.setData({
         isLogin: true
       })
+     }, 1500);
     }
   },
 
@@ -197,27 +199,27 @@ Page({
   // },
 
   onReachBottom: function () {
-    if (!this.data.pullUpOn) return;
-    console.log('触底了')
-    this.setData({
-      loadding: true
-    }, () => {
-      setTimeout(() => {
-        if (this.data.pageIndex == 3) {
-          this.setData({
-            loadding: false,
-            pullUpOn: false
-          })
-        } else {
-          const arr = list.slice(4,4)
-          this.setData({
-            blogList: this.data.blogList.concat(arr),
-            pageIndex: this.data.pageIndex + 1,
-            loadding: false
-          })
-        }
-      }, 10);
-    })
+    // if (!this.data.pullUpOn) return;
+    // console.log('触底了')
+    // this.setData({
+    //   loadding: true
+    // }, () => {
+    //   setTimeout(() => {
+    //     if (this.data.pageIndex == 3) {
+    //       this.setData({
+    //         loadding: false,
+    //         pullUpOn: false
+    //       })
+    //     } else {
+    //       const arr = list.slice(4,4)
+    //       this.setData({
+    //         blogList: this.data.blogList.concat(arr),
+    //         pageIndex: this.data.pageIndex + 1,
+    //         loadding: false
+    //       })
+    //     }
+    //   }, 10);
+    // })
   },
 
 

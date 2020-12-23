@@ -32,7 +32,7 @@
 .tui-pro-item {
 	width: 100%;
 	margin-bottom: 4%;
-	background: #fff;
+	/* background: #fff; */
 	box-sizing: border-box;
 	border-radius: 12rpx;
 	overflow: hidden;
@@ -45,6 +45,7 @@
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
+	background: #fff;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;

@@ -6,7 +6,7 @@
       <text class="issue" bindtap="blurInput">完成</text>
     </view>
     <view wx:else class="header">
-      <text class="cancel">取消</text>
+      <text class="cancel" bindtap="cancel">取消</text>
       <text class="issue" bindtap="send" hover-class="press">发布</text>
     </view>
     <tui-list-cell padding="0" hover="{{false}}">

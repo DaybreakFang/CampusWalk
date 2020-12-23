@@ -103,15 +103,7 @@ margin-top: -500rpx;
   border: 4rpx #313c4d solid;
   /* box-shadow: 6rpx 6rpx 4rpx #313c4d ; */
 }
-.bg-1{
-  background-color: #5677fc;
-}
-.bg-2{
-  background-color: #ff7900;
-}
-.bg-3{
-  background-color: #19be6b;
-}
+
 .swiper-active {
   transform: scale(1);
 }

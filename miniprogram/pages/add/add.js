@@ -35,6 +35,9 @@ Page({
       isOpen: true
     })
   },
+  cancel(){
+    wx.navigateBack({})
+  },
   async blurInput() {
     this.setData({
       isOpen: false
@@ -99,7 +102,7 @@ Page({
           //  this.imgCloudCheck(res._id)
           }else{
             wx.showModal({
-              title: "友情提示",
+              title: "温馨提示",
               content: '发布失败！请稍后重试',
               showCancel: false,
               confirmText: "我知道了",
@@ -109,8 +112,8 @@ Page({
       } else {
         $.hideLoading();
         wx.showModal({
-          title: "友情提示",
-          content: '文本含有违规内容！',
+          title: "内容违规提示",
+          content: '您的发布内容不符合规范！',
           showCancel: false,
           confirmText: "我知道了",
         })
@@ -120,7 +123,7 @@ Page({
   check(type) {
     let res = type ? '至少需要添加1张图片哦！' : '最少写10个字才能发布哦！';
     wx.showModal({
-      title: "友情提示",
+      title: "温馨提示",
       content: res,
       showCancel: false,
       confirmText: "我知道了",

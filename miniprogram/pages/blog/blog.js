@@ -7,56 +7,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"",
+    title: "",
     blogList: [],
   },
 
-  Todetail(e){
+  Todetail(e) {
     const res = e.detail.singleData
-   wx.navigateTo({
-     url: '../detail/detail?data='+JSON.stringify(res),
-   })
-   },
+    wx.navigateTo({
+      url: '../detail/detail?data=' + JSON.stringify(res),
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var userData = wx.getStorageSync('userData') || []
+    if (!userData.length) {
+      return
+    }
     $.loading('玩命加载中...')
     let res = Number(options.type)
-  // const title = res ? '我的发布' : '我的收藏'
-   if(res){
-     this.getAllData()
-   }else{
-     this.getCollectionData()
-   }
-    
+    // const title = res ? '我的发布' : '我的收藏'
+    if (res) {
+      this.getAllData()
+    } else {
+      this.getCollectionData()
+    }
+
   },
-getAllData(){
-  db.collection('blog_collection').where({
-    author_id: '{openid}'
-  }).orderBy('update_time','desc')
-  .get().then((res)=>{
-    console.log('我的发布：',res)
-    this.setData({
-      title:'我的发布',
-      blogList:res.data
+  getAllData() {
+    db.collection('blog_collection').where({
+        author_id: '{openid}'
+      }).orderBy('update_time', 'desc')
+      .get().then((res) => {
+        console.log('我的发布：', res)
+        this.setData({
+          title: '我的发布',
+          blogList: res.data
+        })
+        $.hideLoading()
+      })
+  },
+  getCollectionData() {
+    wx.cloud.callFunction({
+      name: 'collectionblog',
+      data: {},
+    }).then((res) => {
+      console.log('我的收藏', res)
+      this.setData({
+        title: '我的收藏',
+        blogList: res.result.data
+      })
+      $.hideLoading()
     })
-    $.hideLoading()
-  })
-},
-getCollectionData(){
-wx.cloud.callFunction({
-  name:'collectionblog',
-  data:{},
-}).then((res)=>{
-  console.log('我的收藏',res)
-  this.setData({
-    title:'我的收藏',
-    blogList:res.result.data
-  })
-  $.hideLoading()
-})
-},
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

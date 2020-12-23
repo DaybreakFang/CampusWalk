@@ -60,6 +60,7 @@ var pointArr = [{
 ];
 // 创建 audio 声音播放能力
 const AUDIOMANAGER = getApp().globalData.global_bac_audio_manager.manage
+
 Page({
 
   data: {
@@ -107,6 +108,13 @@ Page({
     this.setData({
       currentImgIndex: index,
     });
+    if (this.data.isPlay) {
+      // wx.pauseBackgroundAudio()
+      wx.stopBackgroundAudio()
+      this.setData({
+        isPlay: false
+      })
+    }
   },
   // 点击 图片 播放
   async play() {
@@ -118,9 +126,10 @@ Page({
         isPlay: true
       })
       // 转语音并播放
-      this.ToSpeech(res)
+      this.ToSpeech(res,location_name)
 
-    } else {
+    } 
+    else {
       // 暂停播放
       wx.pauseBackgroundAudio()
       this.setData({
@@ -129,7 +138,7 @@ Page({
     }
   },
   // 文字转语音 content：文字
-  ToSpeech(content) {
+  ToSpeech(content,location_name) {
     let that = this;
     // 调用 同声传译插件
     plugin.textToSpeech({
@@ -141,7 +150,7 @@ Page({
         // 传入声音源
         AUDIOMANAGER.src = res.filename
         // ios下 必须携带 title
-        AUDIOMANAGER.title = '你好'
+        AUDIOMANAGER.title = location_name
         // 开始播放
         AUDIOMANAGER.onPlay(() => {
           console.log("开始播放")
@@ -179,10 +188,10 @@ Page({
         }
 
         // 上线 记得 开启这个
-        var point = {
-          longitude,
-          latitude
-        }
+        // var point = {
+        //   longitude,
+        //   latitude
+        // }
         // 判断 所在位置是否在校园内
         var inCampus = inArea.inArea(pointArr, point)
         console.log('在里面吗？', inCampus)
@@ -202,6 +211,7 @@ Page({
             .then(res => {
           
               // console.log('匹配结果', res.list)
+             setTimeout(() => {
               that.setData({
                 locationList: res.list,
                 isLocation: false
@@ -209,6 +219,7 @@ Page({
              
               // 赋值给全局
               app.globalData.locationList = res.list
+             }, 1500);
             })
         } else {
           wx.showModal({

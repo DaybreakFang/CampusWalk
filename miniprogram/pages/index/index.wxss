@@ -1,50 +1,30 @@
 /* miniprogram/pages/index/index.wxss */
-/* pages/welcome/welcome.wxss */
-
-
-.container{
-position: relative;
-padding-bottom: env(safe-area-inset-bottom);
-width: 100%;
-height: 100vh
-
-}
-
-/* .intro-img{ */
-/* box-sizing: border-box; */
-/* height: 26%; */
-  /* background-color: #f6f6f6; */
-  /* background: linear-gradient(to right, #ff5349 0%, #ff886e 100%); */
-/* } */
-.intro-img image{
+.container {
+  position: relative;
+  padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
-  height: 440rpx;
-  /* border-bottom-left-radius: 56rpx 46rpx; */
+  height: 100vh;
+}
 
-}
-.intro-img::after{
-  content: "";
-  position: absolute;
-  top: 420rpx;
-  right: 0;
-  height: 20rpx;
+.intro-img image {
   width: 100%;
-  background: #fafafa;
-  z-index: 2;
-  /* border-top-left-radius: 14rpx;
-  border-top-right-radius: 14rpx; */
+  height: 334rpx;
 }
-.main-content{
+
+.main-content {
   box-sizing: border-box;
   position: absolute;
   background: #fafafa;
   z-index: 3;
 }
-.intro-wrap{
+
+.intro-wrap {
   padding: 0 25rpx;
   margin-bottom: 10rpx;
+  margin-top: 16rpx;
 }
-.intro-layout{
+
+.intro-layout {
 
   width: 100%;
   display: flex;
@@ -52,11 +32,13 @@ height: 100vh
   justify-content: space-between;
   flex-direction: row;
 }
-.banner{
-  flex:1;
+
+.banner {
+  flex: 1;
   margin-right: 2%;
 }
-.card{
+
+.card {
   height: 460rpx;
   display: flex;
   align-items: center;
@@ -69,6 +51,7 @@ height: 100vh
   vertical-align: middle;
   font-size: 26rpx;
 }
+
 .tui-operation {
   width: 100%;
   height: 140rpx;
@@ -80,13 +63,13 @@ height: 100vh
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-.operation-wrap{
+.operation-wrap {
   margin: 0 25rpx;
   display: flex;
-background: rgba(0, 0, 0, .8);
+  background: rgba(3, 3, 3, .9);
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 25rpx;
+  padding: 18rpx 25rpx;
   border-radius: 14rpx;
 }
 
@@ -123,11 +106,12 @@ background: rgba(0, 0, 0, .8);
   justify-content: center;
 }
 
-.content-head{
+.content-head {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .tui-avatar {
   width: 96rpx;
   height: 96rpx;
@@ -135,20 +119,22 @@ background: rgba(0, 0, 0, .8);
   display: block;
   flex-shrink: 0;
 }
-.tui-title{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-left: 20rpx;
+
+.tui-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20rpx;
 }
-.tui-title .nickname{
+
+.tui-title .nickname {
   font-size: 30rpx;
   color: #fff;
 }
 
 
 
-.login{
+.login {
   height: 70rpx;
   line-height: 70rpx;
   font-size: 30rpx;

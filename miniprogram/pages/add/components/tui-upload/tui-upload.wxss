@@ -32,8 +32,8 @@
 }
 
 .tui-upload-add {
-  width: 166rpx;
-  height: 233rpx;
+  width: 150rpx;
+  height: 200rpx;
   font-size: 68rpx;
   font-weight: 100;
   color: #888;
@@ -48,8 +48,8 @@ margin-top: 12rpx;
 }
 
 .tui-image-item {
-  width: 166rpx;
-  height: 233rpx;
+  width: 150rpx;
+  height: 200rpx;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -68,8 +68,8 @@ margin-top: 12rpx;
 } */
 
 .tui-item-img {
-  width: 166rpx;
-  height: 233rpx;
+  width: 150rpx;
+  height: 200rpx;
   display: block;
   border-radius: 12rpx;
 }

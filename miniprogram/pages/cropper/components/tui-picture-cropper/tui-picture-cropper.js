@@ -17,32 +17,32 @@ Component({
     */
     height: {
       type: Number,
-      value: 350
+      value: 400
     },
     //裁剪框宽度 px
     width: {
       type: Number,
-      value: 250
+      value: 300
     },
     //裁剪框最小宽度 px
     minWidth: {
       type: Number,
-      value: 250
+      value: 300
     },
     //裁剪框最小高度 px
     minHeight: {
       type: Number,
-      value: 350
+      value: 400
     },
     //裁剪框最大宽度 px
     maxWidth: {
       type: Number,
-      value: 500
+      value: 300
     },
     //裁剪框最大高度 px
     maxHeight: {
       type: Number,
-      value: 700
+      value: 400
     },
     //裁剪框border颜色
     borderColor: {
@@ -153,8 +153,8 @@ Component({
   },
   data: {
     TIME_CUT_CENTER: null,
-    CROPPER_WIDTH: 250, //裁剪框宽
-    CROPPER_HEIGHT: 350, //裁剪框高
+    CROPPER_WIDTH: 300, //裁剪框宽
+    CROPPER_HEIGHT: 400, //裁剪框高
     cutX: 0, //画布x轴起点
     cutY: 0, //画布y轴起点0
     canvasWidth: 0,

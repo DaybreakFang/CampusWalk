@@ -187,7 +187,6 @@ Component({
       })
     },
     dealImg(img){
-      console.log('我是子组件',img)
       let _this = this;
          _this.setData({
             imageList: _this.data.imageList.concat(img)
@@ -196,22 +195,12 @@ Component({
           let start = _this.data.imageList.length - img.length
           for (let j = 0; j < img.length; j++) {
             let index = start + j
-            //服务器地址
-            // if (_this.data.serverUrl) {
               _this.uploadImage(index, img[j])
               .then(() => {
                 _this.change()
               }).catch(() => {
                 _this.change()
               })
-            // } else {
-            //   //无服务器地址则直接返回成功
-            //   let value = `statusArr[${index}]`
-            //   _this.setData({
-            //     [value]: "1"
-            //   })
-            //   _this.change()
-            // }
           }
     },
     uploadImage: function (index, url) {

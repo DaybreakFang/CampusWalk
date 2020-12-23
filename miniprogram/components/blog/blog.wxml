@@ -1,13 +1,13 @@
 <!--components/blog/blog.wxml-->
 <view>
   <view class="tui-product-box" wx:if="{{list.length}}">
-    <tui-skeleton wx:if="{{skeletonShow}}" backgroundColor="#fafafa" borderRadius="10rpx"></tui-skeleton>
+    <!-- <tui-skeleton wx:if="{{skeletonShow}}" backgroundColor="#fafafa" borderRadius="10rpx"></tui-skeleton> -->
     <view class="tui-product-list">
       <view class="tui-product-container ">
         <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
           <block wx:if="{{(index+1)%2!=0}}">
             <block>
-              <view class="tui-pro-item " hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
+              <view class="tui-pro-item" style="background:#19be6b" hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
                 <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">
@@ -29,7 +29,7 @@
         <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
           <block wx:if="{{(index+1)%2==0}}">
             <block>
-              <view class="tui-pro-item" hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
+              <view class="tui-pro-item" style="background:#ff7900" hover-class="hover" hover-start-time="{{150}}" data-id="{{index}}" bindtap="detail">
                 <image class="tui-pro-img" src="{{item.img_list[0]}}" mode="widthFix">
                 </image>
                 <view class="tui-pro-content">

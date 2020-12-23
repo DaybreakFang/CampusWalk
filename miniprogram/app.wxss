@@ -7,7 +7,7 @@ page {
   /* background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); */
 }
 .press{
-  transform: scale(.9);
+  transform: scale(.98);
   opacity: .9;
 }
 .bg-theme {
@@ -101,4 +101,13 @@ button::after {
   button {
   border-radius:0;
   
+  }
+  .bg-1{
+    background-color: #5677fc !important;
+  }
+  .bg-2{
+    background-color: #ff7900 !important;
+  }
+  .bg-3{
+    background-color: #19be6b !important;
   }

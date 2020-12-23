@@ -17,9 +17,7 @@
     </view>
 
     <view class="content-layout">
-      <text class="text-content">
-        {{content}}
-      </text>
+      <text class="text-content">{{content}}</text>
     </view>
   </view>
 

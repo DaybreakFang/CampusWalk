@@ -21,7 +21,7 @@
 .content{
 position: relative;
 box-sizing: border-box;
-padding: 40rpx 30rpx 110rpx 30rpx;
+padding: 40rpx 40rpx 120rpx 40rpx;
 }
 .content-head{
   display: flex;
@@ -29,8 +29,8 @@ padding: 40rpx 30rpx 110rpx 30rpx;
   align-items: center;
 }
 .tui-avatar {
-  width: 96rpx;
-  height: 96rpx;
+  width: 86rpx;
+  height: 86rpx;
   border-radius: 50%;
   display: block;
   flex-shrink: 0;
@@ -48,12 +48,13 @@ margin-left: 20rpx;
 }
 
 .content-layout{
-  width: 690rpx;
+  width: 680rpx;
   text-align: justify;
+  margin-top: 30rpx;
 }
 .text-content{
   color: #333;
-  font-size: 34rpx;
+  font-size: 32rpx;
   line-height: 60rpx;
   word-break: break-all;
   word-wrap: break-word;
