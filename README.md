@@ -13,7 +13,7 @@
 5）实现动态热门广场功能，每隔 10 分钟更新一次，让用户能看到校园内时下最 热门的动态。
 
 ### 在线体验
-gh_0052bb24ada5_344.jpg![image](https://user-images.githubusercontent.com/45456105/110346100-2e809700-806a-11eb-98cf-772d71bf1922.png)
+![image](https://user-images.githubusercontent.com/45456105/110346100-2e809700-806a-11eb-98cf-772d71bf1922.png)
 
 
 ### 小程序 UI 界面截图
