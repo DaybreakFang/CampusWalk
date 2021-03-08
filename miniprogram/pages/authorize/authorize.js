@@ -18,6 +18,7 @@ Page({
         if (res.authSetting["scope.userInfo"]) {
           wx.getUserInfo({
             success: res => {
+              console.log(res)
               wx.showLoading({
                 title: "登录中",
                 mask: true

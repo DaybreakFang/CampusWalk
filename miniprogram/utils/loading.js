@@ -10,7 +10,8 @@ export default {
   loading(loadingText = '加载中···', mask = true) {
     const loading = getLoaingObj()
     if (loading) {
-      loading.show(loadingText, mask) // 调用loading组件的show方法实现显示，这样就不需要在每个页面的js部分写一次获取loading组件和show
+      loading.show(loadingText, mask) 
+      // 调用loading组件的show方法实现显示，这样就不需要在每个页面的js部分写一次获取loading组件和show
     }
   },
   hideLoading() {

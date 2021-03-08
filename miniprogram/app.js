@@ -14,7 +14,7 @@ App({
   },
   onLaunch: function () {
     wx.cloud.init({
-      env: 'daybreak-123',
+      env: '这里填写你的云开发环境',
       traceUser: true
     })
   }

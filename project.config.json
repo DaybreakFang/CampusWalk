@@ -32,7 +32,7 @@
     "packNpmManually": false,
     "packNpmRelationList": []
   },
-  "appid": "wx19efa430ac3e19fa",
+  "appid": "这里填写你的appid",
   "projectname": "CampusWalk",
   "libVersion": "2.14.0",
   "simulatorType": "wechat",

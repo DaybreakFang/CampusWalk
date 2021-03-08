@@ -188,10 +188,10 @@ Page({
         }
 
         // 上线 记得 开启这个
-        // var point = {
-        //   longitude,
-        //   latitude
-        // }
+        var point = {
+          longitude,
+          latitude
+        }
         // 判断 所在位置是否在校园内
         var inCampus = inArea.inArea(pointArr, point)
         console.log('在里面吗？', inCampus)

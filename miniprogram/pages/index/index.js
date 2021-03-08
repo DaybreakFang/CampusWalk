@@ -184,42 +184,8 @@ Page({
 
   },
 
-  // onPullDownRefresh: function () {
-  //   //延时为了看效果
-  //   setTimeout(() => {
-  //     this.setData({
-  //       // productList: this.data.loadData,
-  //       // pageIndex: 1,
-  //       pullUpOn: true,
-  //       loadding: false
-  //     }, () => {
-  //       wx.stopPullDownRefresh();
-  //     })
-  //   }, 1000)
-  // },
-
   onReachBottom: function () {
-    // if (!this.data.pullUpOn) return;
-    // console.log('触底了')
-    // this.setData({
-    //   loadding: true
-    // }, () => {
-    //   setTimeout(() => {
-    //     if (this.data.pageIndex == 3) {
-    //       this.setData({
-    //         loadding: false,
-    //         pullUpOn: false
-    //       })
-    //     } else {
-    //       const arr = list.slice(4,4)
-    //       this.setData({
-    //         blogList: this.data.blogList.concat(arr),
-    //         pageIndex: this.data.pageIndex + 1,
-    //         loadding: false
-    //       })
-    //     }
-    //   }, 10);
-    // })
+
   },
 
 
