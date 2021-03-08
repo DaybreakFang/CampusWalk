@@ -5,58 +5,13 @@ const Attractions = db.collection('attraction_collection')
 var plugin = requirePlugin("WechatSI")
 import inArea from './../../utils/inArea'
 // 学校范围
-var pointArr = [{
-    longitude: 113.908074,
-    latitude: 30.937753
-  },
-  {
-    longitude: 113.911572,
-    latitude: 30.937918
-  },
-  {
-    longitude: 113.911529,
-    latitude: 30.939317
-  },
-  {
-    longitude: 113.916807,
-    latitude: 30.938875
-  },
-  {
-    longitude: 113.916249,
-    latitude: 30.936243
-  },
-  {
-    longitude: 113.918245,
-    latitude: 30.934624
-  },
-  {
-    longitude: 113.917515,
-    latitude: 30.932802
-  },
-  {
-    longitude: 113.914511,
-    latitude: 30.931771
-  },
-  {
-    longitude: 113.908052,
-    latitude: 30.933556
-  },
-  {
-    longitude: 113.907752,
-    latitude: 30.931808
-  },
-  {
-    longitude: 113.901980,
-    latitude: 30.931955
-  },
-  {
-    longitude: 113.902259,
-    latitude: 30.935746
-  },
-  {
-    longitude: 113.907752,
-    latitude: 30.935728
-  },
+var pointArr = [
+    // 此处需传入 地区 范围坐标
+    // 例如：
+    // {
+    // longitude: 123.908074,
+    // latitude: 120.937753
+    // }
 ];
 // 创建 audio 声音播放能力
 const AUDIOMANAGER = getApp().globalData.global_bac_audio_manager.manage
