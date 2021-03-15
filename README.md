@@ -47,4 +47,3 @@
 ### 小程序 UI 界面截图
 ![image](https://user-images.githubusercontent.com/45456105/111113751-33c76f80-859d-11eb-8640-f637f475f14e.png)
 
-![image](https://user-images.githubusercontent.com/45456105/110345681-d053b400-8069-11eb-94ae-623575cdac30.png) ![image](https://user-images.githubusercontent.com/45456105/110345715-d8abef00-8069-11eb-917f-09fdaf268391.png)
